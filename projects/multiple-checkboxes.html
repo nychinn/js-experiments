@@ -10,6 +10,16 @@
 <style>
 	body {
 		font-family: Helvetica, Arial, sans-serif;
+		background-image: url(https://unsplash.it/1920/1600?image=1056);
+	}
+
+	form {
+		box-sizing: border-box;
+		background-color: #fff;
+		max-width: 500px;
+		width: 100%;
+		margin: 10% auto 0;
+		padding: 10px 20px 30px;
 	}
 
 	h1 {
@@ -19,20 +29,26 @@
 	ul {
 		list-style: none;
 		padding: 0;
-		margin: 0 auto;
-		max-width: 500px;
-		width: 100%;
-		border: 1px solid #ddd;
+		margin: 0;
+		
+		/*border: 1px solid #ddd;*/
 		border-radius: 5px;
 	}
 
 	.checklist-item {	
-		border-bottom: 1px solid #ddd;	
+		border-bottom: 2px solid #ddd;
 	}
 
-	.checklist-item:last-child {
-		border-bottom: 0;
+	.checklist-item:nth-child(2n + 1) {
 	}
+
+	.checklist-item:first-child {
+		border-top: 5px solid orange;
+	}
+
+	/*.checklist-item:last-child {
+		border-bottom: 0;
+	}*/
 
 	.checklist-item::after {
 		content: '';
@@ -40,11 +56,18 @@
 		clear: both;
 	}
 
-	.checkbox {
+	input[type="checkbox"] {
 		float: left;
-		width: 50px;
+		height: 30px;
+		width: 30px;
+		margin-left: 10px;
 		padding: 10px;
 		box-sizing: border-box;
+		display: inline-block;
+	}
+
+	input[type="checkbox"]:checked + .note {
+		text-decoration: line-through;
 	}
 
 	.note {
@@ -53,59 +76,81 @@
 		/*background: red;*/
 		padding: 10px;
 		box-sizing: border-box;
+		-webkit-user-select: none;
+		   -moz-user-select: none;
+		    -ms-user-select: none;
+		        user-select: none;
 	}
 
 	/*  javascript classes */
-	.j-clicked {
-		text-decoration: line-through;
-	}
 
 </style>
 
-<h1>Multiple Checkboxes</h1>
+
 
 <form action="">
+	<h1>Multiple Checkboxes</h1>
+
 	<ul class="checklist">
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox1"/></div>
-			<label for="checkbox1" class="note">This is a note</label>
+			<input type="checkbox" id="checkbox1"/>
+			<label for="checkbox1" class="note">Grocery Shopping</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox2"/></div>
-			<label for="checkbox2" class="note">This is a note</label>
+			<input type="checkbox" id="checkbox2"/>
+			<label for="checkbox2" class="note">Practice JavaScript</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox3"/></div>
+			<input type="checkbox" id="checkbox3"/>
 			<label for="checkbox3" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox4"/></div>
+			<input type="checkbox" id="checkbox4"/>
 			<label for="checkbox4" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox5"/></div>
+			<input type="checkbox" id="checkbox5"/>
 			<label for="checkbox5" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"><input type="checkbox" id="checkbox6"/></div>
+			<input type="checkbox" id="checkbox6"/>
 			<label for="checkbox6" class="note">This is a note</label>
 		</li>
 	</ul>
 </form>
 
 <script>
-	var checkboxes = document.querySelectorAll('.checklist-item');
-	var checkbox = document.querySelector('.checklist-item');
+	const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
+	const checkbox = document.querySelector('.checklist-item');
+
+	let lastChecked;
+
+	console.log(checkboxes);
 
 	function clicked(e) {
-		// console.log('derp')
-		console.log(e.target);
-		e.target.classList.add('j-clicked');
+
+		let inBetween = false;
+
+		if ( e.shiftKey && this.checked ) {
+			checkboxes.forEach(checkbox => {
+				console.log(checkbox);
+
+				if (checkbox === this || checkbox === lastChecked) {
+					inBetween = !inBetween;
+
+					console.log('checked in between');
+				}
+
+				if ( inBetween ) {
+					checkbox.checked = true;
+				}
+			})
+		}
+
+		lastChecked = this;
 	}
 
-	checkboxes.forEach(function() {
-		this.addEventListener('click', clicked);
-	});
+	checkboxes.forEach(checkbox => checkbox.addEventListener('click', clicked));
 
 
 
