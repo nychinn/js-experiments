@@ -74,11 +74,11 @@
 		display: inline-block;
 	}
 
-	input[type="checkbox"] + label span {
+	input[type="checkbox"] + .note span {
 		position: relative;
 	}
 
-	input[type="checkbox"] + label span::after {
+	input[type="checkbox"] + .note span::after {
 		content: '';
 		height: 2px;
 		background-color: rgba(0,0,0,0.5);
@@ -90,12 +90,12 @@
 		transition: .2s ease-in-out;
 	}
 
-	input[type="checkbox"]:checked + label span::after {
+	input[type="checkbox"]:checked + .note span::after {
 		width: 100%;
 		transition: .2s ease-in-out;
 	}
 
-	label {
+	.note {
 		float: left;
 		width: calc(100% - 50px);
 		border-left: 2px solid #ddd;
@@ -150,27 +150,27 @@
 </form>
 
 <script>
+	// use constants for values that don't change
 	const checkboxes = document.querySelectorAll('.checklist-item input[type="checkbox"]');
 	const checkbox = document.querySelector('.checklist-item');
 
+	// use let for values that will change
 	let lastChecked;
-
-	console.log(checkboxes);
 
 	function clicked(e) {
 
 		let inBetween = false;
 
+		// check if shift key is pressed
 		if ( e.shiftKey && this.checked ) {
 			checkboxes.forEach(checkbox => {
-				console.log(checkbox);
 
+				// reverse inBetween if conditions match
 				if (checkbox === this || checkbox === lastChecked) {
 					inBetween = !inBetween;
-
-					console.log('checked in between');
 				}
 
+				// make all inBetween checkboxes checked
 				if ( inBetween ) {
 					checkbox.checked = true;
 				}
@@ -180,6 +180,7 @@
 		lastChecked = this;
 	}
 
+	// event listeners
 	checkboxes.forEach(checkbox => checkbox.addEventListener('click', clicked));
 
 
