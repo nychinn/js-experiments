@@ -8,9 +8,12 @@
 <body>
 
 <style>
+
 	body {
 		font-family: Helvetica, Arial, sans-serif;
-		background-image: url(https://unsplash.it/1920/1600?image=1056);
+		background-color: #8DBDD1;
+		background-image: url(https://unsplash.it/1920/1600?image=638);
+		color: #333;
 	}
 
 	form {
@@ -20,18 +23,30 @@
 		width: 100%;
 		margin: 10% auto 0;
 		padding: 10px 20px 30px;
+		
+		box-shadow: 
+			1px 1px 0px #333,
+			2px 2px 0px #333,
+			3px 3px 0px #333,
+			4px 4px 0px #333,
+			5px 5px 0px #333,
+			6px 6px 0px #333,
+			7px 7px 0px #333,
+			8px 8px 0px #333
+			;
 	}
 
 	h1 {
 		text-align: center;
+		border-bottom: 5px solid #8DBDD1;
+		padding-bottom: 10px;
+		margin-bottom: 15px;
 	}
 
 	ul {
 		list-style: none;
 		padding: 0;
 		margin: 0;
-		
-		/*border: 1px solid #ddd;*/
 		border-radius: 5px;
 	}
 
@@ -39,16 +54,9 @@
 		border-bottom: 2px solid #ddd;
 	}
 
-	.checklist-item:nth-child(2n + 1) {
-	}
-
-	.checklist-item:first-child {
-		border-top: 5px solid orange;
-	}
-
-	/*.checklist-item:last-child {
+	.checklist-item:last-child {
 		border-bottom: 0;
-	}*/
+	}
 
 	.checklist-item::after {
 		content: '';
@@ -73,7 +81,7 @@
 	.note {
 		float: left;
 		width: calc(100% - 50px);
-		/*background: red;*/
+		border-left: 2px solid #ddd;
 		padding: 10px;
 		box-sizing: border-box;
 		-webkit-user-select: none;
@@ -82,7 +90,12 @@
 		        user-select: none;
 	}
 
-	/*  javascript classes */
+	/*  media queries */
+	@media (min-width: 1280px) {
+		body {
+			background-size: cover;
+		}
+	}
 
 </style>
 
@@ -102,19 +115,19 @@
 		</li>
 		<li class="checklist-item">
 			<input type="checkbox" id="checkbox3"/>
-			<label for="checkbox3" class="note">This is a note</label>
+			<label for="checkbox3" class="note">Pack Luggage for Sydney</label>
 		</li>
 		<li class="checklist-item">
 			<input type="checkbox" id="checkbox4"/>
-			<label for="checkbox4" class="note">This is a note</label>
+			<label for="checkbox4" class="note">Blender 3D Model Challenge</label>
 		</li>
 		<li class="checklist-item">
 			<input type="checkbox" id="checkbox5"/>
-			<label for="checkbox5" class="note">This is a note</label>
+			<label for="checkbox5" class="note">Christmas Shopping</label>
 		</li>
 		<li class="checklist-item">
 			<input type="checkbox" id="checkbox6"/>
-			<label for="checkbox6" class="note">This is a note</label>
+			<label for="checkbox6" class="note">Buy an Optus travel nano sim</label>
 		</li>
 	</ul>
 </form>
