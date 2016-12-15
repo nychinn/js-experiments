@@ -4,46 +4,120 @@
 	<meta charset="UTF-8">
 	<title>Multiple Checkboxes</title>
 </head>
+
 <body>
 
 <style>
-	
+	body {
+		font-family: Helvetica, Arial, sans-serif;
+	}
+
+	h1 {
+		text-align: center;
+	}
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0 auto;
+		max-width: 500px;
+		width: 100%;
+		border: 1px solid #ddd;
+		border-radius: 5px;
+	}
+
+	.checklist-item {	
+		border-bottom: 1px solid #ddd;	
+	}
+
+	.checklist-item:last-child {
+		border-bottom: 0;
+	}
+
+	.checklist-item::after {
+		content: '';
+		display: table;
+		clear: both;
+	}
+
+	.checkbox {
+		float: left;
+		width: 50px;
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	.note {
+		float: left;
+		width: calc(100% - 50px);
+		/*background: red;*/
+		padding: 10px;
+		box-sizing: border-box;
+	}
+
+	/*  javascript classes */
+	.j-clicked {
+		text-decoration: line-through;
+	}
+
 </style>
 
+<h1>Multiple Checkboxes</h1>
 
 <form action="">
 	<ul class="checklist">
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox1"/></div>
+			<label for="checkbox1" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox2"/></div>
+			<label for="checkbox2" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox3"/></div>
+			<label for="checkbox3" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox4"/></div>
+			<label for="checkbox4" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox5"/></div>
+			<label for="checkbox5" class="note">This is a note</label>
 		</li>
 		<li class="checklist-item">
-			<div class="checkbox"></div>
-			<div class="note">This is a note</div>
+			<div class="checkbox"><input type="checkbox" id="checkbox6"/></div>
+			<label for="checkbox6" class="note">This is a note</label>
 		</li>
 	</ul>
 </form>
 
-
 <script>
-	
+	var checkboxes = document.querySelectorAll('.checklist-item');
+	var checkbox = document.querySelector('.checklist-item');
+
+	function clicked(e) {
+		// console.log('derp')
+		console.log(e.target);
+		e.target.classList.add('j-clicked');
+	}
+
+	checkboxes.forEach(function() {
+		this.addEventListener('click', clicked);
+	});
+
+
+
 </script>
 	
 </body>
 </html>
+
+
+
+
+
+
+
+
