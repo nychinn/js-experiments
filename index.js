@@ -15,7 +15,9 @@ app.get('/', function(req, res) {
 })
 
 app.use('/multiple-checkboxes', function(req, res) {
-	res.send('/checkbox');
+	res.render('text', {
+		title: 'Hello World!'
+	})
 })
 
 app.listen(3000, function() {
