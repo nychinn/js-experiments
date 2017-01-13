@@ -11,6 +11,7 @@
 	<!-- <link rel="shortcut icon" href="images/favicon.ico" /> -->
 	<!-- Fav icon -->
 	
+	<link href="https://fonts.googleapis.com/css?family=Roboto:300,700" rel="stylesheet">
 	<link rel="stylesheet" href="assets/css/style.css">
 
 		<!--[if lt IE 9]>
@@ -32,6 +33,44 @@
 
 		<title>Document</title>
 
+		<style>
+			.gridItem {
+				width: 33.33%;
+				height: 0;
+				padding-bottom: 33.33%;
+				display: inline-block;
+				float: left;
+				box-sizing: border-box;
+				position: relative;
+				background-color: #BFC3BA;
+			}
+			.gridItem:nth-child(2n) {
+				background-color: #A9ACA9;
+			}
+			.gridItem a {
+				text-decoration: none;
+				color: #fff;
+				text-transform: uppercase;
+				letter-spacing: 1px;
+				font-family: Roboto;
+				font-weight: 300;
+			}
+			.gridTable {
+				display: table;
+				height: 100%;
+				width: 100%;
+				position: absolute;
+				top: 0;
+				left: 0;
+			}
+			.gridInner {
+				display: table-cell;
+				vertical-align: middle;
+				text-align: center;
+				padding: 20px;
+			}
+		</style>
+
 	</head>
 	<body>
 
@@ -39,6 +78,38 @@
 
 			<main>
 				
+				<div class="gridItem">
+					<div class="gridTable">
+						<div class="gridInner">
+							<h2><a href="projects/animal-sounds/index.html">Animal Sounds</a></h2>
+						</div>
+					</div>
+				</div>
+
+				<div class="gridItem">
+					<div class="gridTable">
+						<div class="gridInner">
+							<h2><a href="projects/multiple-checkboxes/index.html">Multiple Checkboxes</a></h2>
+						</div>
+					</div>
+				</div>
+
+				<div class="gridItem">
+					
+				</div>
+
+				<div class="gridItem">
+					
+				</div>
+
+				<div class="gridItem">
+					
+				</div>
+				<div class="gridItem"></div>
+				<div class="gridItem"></div>
+				<div class="gridItem"></div>
+				<div class="gridItem"></div>
+
 			</main>
 
 		</div>
