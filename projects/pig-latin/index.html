@@ -7,6 +7,7 @@
 	<style>
 		body {
 			/*background-color: #FFF11A;*/
+			font-family: Helvetica, Arial, sans-serif;
 		}
 
 		.container {
@@ -17,7 +18,7 @@
 		}
 
 		h1 {
-			font-family: Helvetica, Arial, sans-serif;
+			
 			color: #333;
 			text-transform: uppercase;
 		}
@@ -95,6 +96,14 @@
 			display: inline-block;
 			margin: 0 auto;
 		}
+
+		.translation {
+			-webkit-box-sizing: border-box;
+			   -moz-box-sizing: border-box;
+			        box-sizing: border-box;
+			padding: 20px;
+			font-size: 20px;
+		}
 	</style>
 </head>
 <body>
@@ -142,6 +151,8 @@
 		var input = document.querySelector('input[type="text"]');
 		var translation = document.querySelector('.translation');
 		var text;
+		var sentence;
+		var pigLatin = '';
 
 		console.log(button);
 
@@ -149,22 +160,51 @@
 		button.addEventListener('click', translate);
 
 		function getInput() {
-			var text = input.value;
-			console.log(text);
+			text = input.value;
+			sentence = text.split(' ');	
+
+			console.log(sentence);
 		}
 
 		function translate() {
-			var vowels = ['a', 'e', 'i', 'o', 'u'];
-			
-			// var firstLetter = input.charAt(0);
 
-			console.log('bleep')
+			if ( !text ) {
 
+				alert('Please type some text.');
 
+			} else {
 
-			translation.innerHTML = 'BLAH';
+				var vowels = /[aeiou]/gi;
+				
+				// var firstLetter = input.charAt(0);
 
-			// pig latin?
+				// what about two letter sounds at beginning of word?
+
+				pigLatin = '';
+
+				for ( var i=0; i<sentence.length; i++ ) {
+					var firstLetter = sentence[i].charAt(0);
+					var secondLetter = sentence[i].charAt(1);
+					var word = sentence[i];
+
+					if ( firstLetter.match(vowels) ) {
+						pigLatin += `${firstLetter}${word.substring(1)}way `;
+					} else {
+
+						// loop through the beginning letters to see if there are consonants in a row
+						var vowelIndex = word.indexOf(word.match(vowels)[0]);
+
+						// consonant
+						pigLatin += `${word.substring(vowelIndex)}${sentence[i].substring(0, vowelIndex)}ay `;
+
+						console.log(vowelIndex);
+					}
+
+					
+				}
+
+				translation.innerHTML = pigLatin;
+			}
 			
 		}
 
