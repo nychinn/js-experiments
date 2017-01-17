@@ -7,8 +7,6 @@
 	<title>No Tears Game</title>
 </head>
 <body>
-
-	
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
 	<script src="assets/jquery.hotkeys.js"></script>
 	<script src="assets/key_status.js"></script>
@@ -19,38 +17,42 @@
 
 
 
-	
+
 
 	<script>
-	// create the canvas
+	// CREATE THE CANVAS
 	var CANVAS_WIDTH = 480;
 	var CANVAS_HEIGHT = 320;
+
 
 	var canvasElement = $(`<canvas width="${CANVAS_WIDTH}" height="${CANVAS_HEIGHT}"></canvas>`);
 	var canvas = canvasElement.get(0).getContext("2d");
 	canvasElement.appendTo('body');
 
-	// game loop
+	// GAME LOOP
+	// redraw the screen faster than the human eye and mind can perceive
 	var FPS = 30;
 
+	// RUN GAME CODE
 	setInterval(function() {
 		update();
 		draw();
 	}, 1000/FPS);
 
-	var textX = 50;
-	var textY = 50;
 
 	function update() {
 
+		// trigger 'shoot' function on the player object when pressing space
 		if ( keydown.space ) {
 			player.shoot();
 		}
 
+		// move left when pressing left arrow key
 		if ( keydown.left ) {
 			player.x -= 5;
 		}
 
+		// move right when pressing right arrow key
 		if ( keydown.right ) {
 			player.x += 5;
 		}
@@ -80,24 +82,29 @@
 		handleCollisions();
 	}
 
+	// DISPLAY GRAPHICS ON THE CANVAS
 	function draw() {
+		// clear the canvas for the new frame, cos its like an animation
 		canvas.clearRect(0, 0, CANVAS_WIDTH, CANVAS_HEIGHT);
 		player.draw();
 
+		// update position of the bullet collection
 		playerBullets.forEach(function(bullet) {
 			bullet.draw();
-		})
+		});
 
+		// remove bullets that have collided with an enemy
 		playerBullets = playerBullets.filter(function(bullet) {
 			return bullet.active;
 		});
 
+		// update position of the enemy collection
 		enemies.forEach(function(enemy) {
 			enemy.draw();
 		});
 	}
 
-	// create the player
+	// CREATE THE PLAYER - player object
 	var player = {
 		color: '#00A',
 		x: 220,
@@ -108,9 +115,9 @@
 			canvas.fillStyle = this.color;
 			canvas.fillRect(this.x, this.y, this.width, this.height);
 		},
+		// create new bullet instance and add it to the collection of bullets
 		shoot: function() {
 			// Sound.play('shoot');
-
 			var bulletPosition = this.midpoint();
 
 			playerBullets.push(Bullet({
@@ -119,17 +126,26 @@
 				y: bulletPosition.y
 			}));
 		},
+		// get center coordinates of the player for bullet to shoot from
 		midpoint: function() {
 			return {
 				x: this.x + this.width/2,
 				y: this.y + this.height/2
 			}
+		},
+		// remove player from the canvas
+		explode: function() {
+			this.active = false;
+			// extra credit: add explosion graphic and then end game
 		}
 	}
 
-	// create bullets
+	// CREATE BULLETS - bullet object
+
+	// collection to store all the bullets
 	var playerBullets = [];
 
+	// constructor to create bullet instances
 	function Bullet(I) {
 		I.active = true;
 
@@ -159,10 +175,12 @@
 		return I;
 	}
 
-	// create enemies
+	// CREATE ENEMIES
 
+	// collection to store all the enemy
 	var enemies = [];
 
+	// constructor to create enemy instances
 	function Enemy(I) {
 		I = I || {};
 
@@ -198,12 +216,14 @@
 			I.active = I.active && I.inBounds();
 		}
 
+		// used utility class to load image sprites for enemy
 		I.sprite = Sprite('enemy');
 
 		I.draw = function() {
 			this.sprite.draw(canvas, this.x, this.y);
 		};
 
+		// remove enemy from the canvas
 		I.explode = function() {
 			// Sound.play('explosion');
 			this.active = false;
@@ -216,21 +236,20 @@
 
 	// loading and drawing images
 
+	// used utility class to load image sprites for player
 	player.sprite = Sprite('player');
 
 	player.draw = function() {
 		this.sprite.draw(canvas, this.x, this.y);
 	};
 
-	player.explode = function() {
-		this.active = false;
-		// extra credit: add explosion graphic and then end game
-	}
+	
 
 	// collision detection
 		// player bullets => enemy ships
 		// player => enemy ships
 
+	// detect when two graphics touch each other
 	function collides(a, b) {
 		return a.x < b.x + b.width &&
 			   a.x + a.width > b.x &&
