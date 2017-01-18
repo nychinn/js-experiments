@@ -11,11 +11,16 @@
 * Simple Text Based Games
 * E-card Generator
 * Tic Tac Toe
+* Is it a Palindrome?
+* Quiz
 
 
 
 ### Sources
 https://javascript30.com/
 http://www.dreamincode.net/forums/topic/78802-martyr2s-mega-project-ideas-list/
+https://github.com/karan/Projects
+https://www.quora.com/Where-can-I-get-ideas-for-small-JavaScript-projects-to-do
 https://ideas.pencilcode.net/
+https://www.reddit.com/r/dailyprogrammer/wiki/challenges
 
