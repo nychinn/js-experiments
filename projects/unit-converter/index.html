@@ -1,0 +1,195 @@
+<!-- Convert Units -->
+<!-- Temp, Currency, Volume, Mass, etc -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Unit Converter</title>
+
+	<style>
+		body {
+			font-family: Helvetica, Arial, sans-serif;
+			margin: 0;
+			padding: 0;
+		}
+
+		.container {
+			width: 100%;
+			max-width: 800px;
+			margin: 0 auto;
+		}
+
+		.grid-item {
+			box-sizing: border-box;
+			width: 49%;
+			margin-right: 2%;
+			margin-bottom: 2%;
+			padding: 5px 20px 20px;
+			float: left;
+			border: 2px solid #ddd;
+			border-radius: 8px;
+		}
+
+		.grid-item:nth-child(2n) {
+			margin-right: 0;
+		}
+
+		.row {
+			
+		}
+
+		.row::after {
+			content: '';
+			clear: both;
+			display: table;
+		}
+
+		.col {
+			float: left;
+		}
+
+		.col-half {
+			box-sizing: border-box;
+			width: 48%;
+			margin-right: 4%;
+		}
+
+		.col-half:nth-child(2) {
+			margin-right: 0;
+		}
+		
+		@media screen and (max-width: 600px) {
+			/*.col-half {
+				width: 100%;
+				margin-right: 0;
+			}*/
+
+			.grid-item {
+				width: 100%;
+				margin-right: 0;
+			}
+		}
+
+		@media screen and (max-width: 880px) {
+			.grid-item {
+				margin-bottom: 20px;
+			}
+			.container {
+				box-sizing: border-box;
+				padding-left: 30px;
+				padding-right: 30px;
+			}
+		}
+
+		.u-width100pc {
+			width: 100%;
+		}
+
+		.buttons-wrap {
+			clear: both;
+			margin-top: 15px;
+			margin-bottom: 15px;
+		}
+
+		.button {
+			background-color: #333;
+			color: #fff;
+			text-transform: uppercase;
+			font-size: 12px;
+			box-sizing: border-box;
+			padding: 10px;
+			display: inline-block;
+			text-decoration: none;
+			letter-spacing: 0.04em;
+			border-radius: 5px;
+		}
+
+		.answer {
+			background-color: #f6f6f6;
+			box-sizing: border-box;
+			padding: 12px 10px;
+			border-radius: 5px;
+		}
+
+		input[type="text"] {
+			box-sizing: border-box;
+			padding: 10px;
+			font-size: 16px;
+			border-radius: 5px;
+			border: 2px solid #eeeeee;
+		}
+
+	</style>
+</head>
+<body>
+	
+	<div class="container">
+		<h1>Hello</h1>
+
+<!-- 		<h2>Temperature</h2> -->
+		<div class="grid-wrap">
+			
+		</div>
+	</div>
+
+	<script>
+	var item = [
+		{
+			title: 'Celcius to Fahrenheit',
+			unitA: '&deg;C',
+			unitB: '&deg;F',
+			type: 'celcToFahren'
+		},
+		{
+			title: 'Fahrenheit to Celcius',
+			unitA: '&deg;F',
+			unitB: '&deg;C',
+			type: 'fahrenToCelc'
+		},
+		{
+			title: '',
+			unitA: '',
+			unitB: '',
+			type: ''
+		}
+	];
+
+	var gridContainer = document.querySelector('.grid-wrap');
+	var html = '';
+
+	var celcToFahren = document.querySelector('.type-celcToFahren');
+	var fahrenToCelc = document.querySelector('.type-FahrenToCelc');
+
+
+	for ( var i=0; i<item.length; i++ ) {
+		html += `<div class="grid-item type-${item[i].type}">
+			<h3>${item[i].title}</h3>
+			<div class="row">
+				<div class="col col-half">
+					<label for="" class="u-width100pc">${item[i].unitA}</label>
+					<input type="text" class="u-width100pc"/>
+				</div>
+
+				<div class="col col-half">
+					<label for="" class="u-width100pc">${item[i].unitB}</label>
+					<input type="text" class="u-width100pc"/>
+				</div>
+			</div>
+			
+			<div class="buttons-wrap">
+				<a href="#" class="button button-reset">Reset</a>
+				<a href="#" class="button button-convert">Convert</a>
+			</div>
+
+			<div class="answer">Answer: </div>
+
+		</div>`;
+	}
+
+	gridContainer.innerHTML = html;
+
+	</script>
+
+</body>
+</html>
