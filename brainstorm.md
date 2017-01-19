@@ -13,6 +13,11 @@
 * Tic Tac Toe
 * Is it a Palindrome?
 * Quiz
+* Compliment Generator
+* Alarm Clock
+* Change Return in NZ currency
+* Find the next Prime Number
+* Unit Converter
 
 
 
