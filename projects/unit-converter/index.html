@@ -128,9 +128,7 @@
 		<h1>Hello</h1>
 
 <!-- 		<h2>Temperature</h2> -->
-		<div class="grid-wrap">
-			
-		</div>
+		<div class="grid-wrap"></div>
 	</div>
 
 	<script>
@@ -138,53 +136,111 @@
 		{
 			title: 'Celcius to Fahrenheit',
 			unitA: '&deg;C',
-			unitB: '&deg;F',
+			unitB: '',
 			type: 'celcToFahren'
 		},
 		{
 			title: 'Fahrenheit to Celcius',
 			unitA: '&deg;F',
-			unitB: '&deg;C',
+			unitB: '',
 			type: 'fahrenToCelc'
 		},
-		{
-			title: '',
-			unitA: '',
-			unitB: '',
-			type: ''
-		}
+		// {
+		// 	title: 'test',
+		// 	unitA: '',
+		// 	unitB: '',
+		// 	type: ''
+		// }
 	];
 
 	var gridContainer = document.querySelector('.grid-wrap');
 	var html = '';
 
-	var celcToFahren = document.querySelector('.type-celcToFahren');
-	var fahrenToCelc = document.querySelector('.type-FahrenToCelc');
+	
+
+	window.onload = function() {
+
+		var cToF = {
+			item: document.querySelector('.type-celcToFahren'),
+			a: document.querySelector('.type-celcToFahren .unitA'),
+			b: '',
+			submit: document.querySelector('.type-celcToFahren .button-convert'),
+			reset: document.querySelector('.type-celcToFahren .button-reset'),
+			answer: document.querySelector('.type-celcToFahren .answer > span')
+		};
+
+		var fToC = {
+			item: document.querySelector('.type-fahrenToCelc'),
+			a: document.querySelector('.type-fahrenToCelc .unitA'),
+			b: '',
+			submit: document.querySelector('.type-fahrenToCelc .button-convert'),
+			reset: document.querySelector('.type-fahrenToCelc .button-reset'),
+			answer: document.querySelector('.type-fahrenToCelc .answer > span')
+		}
+
+		function reset(element) {
+			if ( element.value ) {
+				element.value = '';
+			} else {
+				element.innerHTML = '';
+			}
+		}
+	  
+	 	cToF.submit.addEventListener('click', triggerCelcToFahren);
+	 	cToF.reset.addEventListener('click', function() { reset(cToF.a); reset(cToF.answer); });
+
+		function triggerCelcToFahren() {
+			if ( !(cToF.a.value == '') ) {
+				cToF.answer.innerHTML = (((parseInt(cToF.a.value) - 32) * 5) / 9).toFixed(2) + ' &deg;F';
+			} else {
+				alert('no');
+			}
+		}
+
+		fToC.submit.addEventListener('click', triggerFahrenToCelc);
+		fToC.reset.addEventListener('click', function() { reset(fToC.a); reset(fToC.answer); });
+
+		function triggerFahrenToCelc() {
+			if ( !(fToC.a.value == '') ) {
+				fToC.answer.innerHTML = (((parseInt(fToC.a.value) * 9) / 5) + 32).toFixed(2) + ' &deg;C';
+			} else {
+				alert('no');
+			}
+		}
+
+	};
 
 
 	for ( var i=0; i<item.length; i++ ) {
 		html += `<div class="grid-item type-${item[i].type}">
-			<h3>${item[i].title}</h3>
-			<div class="row">
-				<div class="col col-half">
-					<label for="" class="u-width100pc">${item[i].unitA}</label>
-					<input type="text" class="u-width100pc"/>
-				</div>
+					<h3>${item[i].title}</h3>
+					<div class="row">`;
 
-				<div class="col col-half">
-					<label for="" class="u-width100pc">${item[i].unitB}</label>
-					<input type="text" class="u-width100pc"/>
-				</div>
-			</div>
+		if ( item[i].unitA !== '' ) {
+		html+=			`<div class="col col-half">
+									<label for="" class="u-width100pc">${item[i].unitA}</label>
+									<input type="text" class="u-width100pc unitA"/>
+								</div>`
+		}
+		
+		if ( item[i].unitB !== '' ) {
+		html+=			`<div class="col col-half">
+							<label for="" class="u-width100pc">${item[i].unitB}</label>
+							<input type="text" class="u-width100pc unitB"/>
+						</div>`;
+		}
+		
+
+		html+=		`</div>
 			
-			<div class="buttons-wrap">
-				<a href="#" class="button button-reset">Reset</a>
-				<a href="#" class="button button-convert">Convert</a>
-			</div>
+					<div class="buttons-wrap">
+						<a href="#" class="button button-reset">Reset</a>
+						<a href="#" class="button button-convert">Convert</a>
+					</div>
 
-			<div class="answer">Answer: </div>
+					<div class="answer">Answer: <span></span></div>
 
-		</div>`;
+				</div>`;
 	}
 
 	gridContainer.innerHTML = html;
