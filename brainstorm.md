@@ -18,6 +18,9 @@
 * Change Return in NZ currency
 * Find the next Prime Number
 * Unit Converter
+* Binary to Decimal converter
+* Coin Flip Simulation
+
 
 
 
