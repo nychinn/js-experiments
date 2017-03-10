@@ -14,6 +14,10 @@
 			padding: 0;
 		}
 
+		.u-clear {
+			clear: both;
+		}
+
 		.container {
 			width: 100%;
 			max-width: 800px;
@@ -137,20 +141,23 @@
 			title: 'Celcius to Fahrenheit',
 			unitA: '&deg;C',
 			unitB: '',
-			type: 'celcToFahren'
+			type: 'celcToFahren',
+			topic: 'Temperature'
 		},
 		{
 			title: 'Fahrenheit to Celcius',
 			unitA: '&deg;F',
 			unitB: '',
-			type: 'fahrenToCelc'
+			type: 'fahrenToCelc',
+			topic: 'Temperature'
 		},
-		// {
-		// 	title: 'test',
-		// 	unitA: '',
-		// 	unitB: '',
-		// 	type: ''
-		// }
+		{
+			title: 'test',
+			unitA: '',
+			unitB: '',
+			type: '',
+			topic: 'Something'
+		}
 	];
 
 	var gridContainer = document.querySelector('.grid-wrap');
@@ -160,22 +167,38 @@
 
 	window.onload = function() {
 
+		// celcius to fahrenheit
 		var cToF = {
 			item: document.querySelector('.type-celcToFahren'),
 			a: document.querySelector('.type-celcToFahren .unitA'),
 			b: '',
 			submit: document.querySelector('.type-celcToFahren .button-convert'),
 			reset: document.querySelector('.type-celcToFahren .button-reset'),
-			answer: document.querySelector('.type-celcToFahren .answer > span')
+			answer: document.querySelector('.type-celcToFahren .answer > span'),
+			method: function() {
+				if ( !(cToF.a.value == '') ) {
+					cToF.answer.innerHTML = (((parseInt(cToF.a.value) * 9) / 5) + 32).toFixed(2) + ' &deg;F';
+				} else {
+					alert('Please enter a value.');
+				}
+			}
 		};
 
+		// fahrenheit to celcius
 		var fToC = {
 			item: document.querySelector('.type-fahrenToCelc'),
 			a: document.querySelector('.type-fahrenToCelc .unitA'),
 			b: '',
 			submit: document.querySelector('.type-fahrenToCelc .button-convert'),
 			reset: document.querySelector('.type-fahrenToCelc .button-reset'),
-			answer: document.querySelector('.type-fahrenToCelc .answer > span')
+			answer: document.querySelector('.type-fahrenToCelc .answer > span'),
+			method: function() {
+				if ( !(fToC.a.value == '') ) {
+					fToC.answer.innerHTML = (((parseInt(fToC.a.value) - 32) * 5) / 9).toFixed(2) + ' &deg;C';
+				} else {
+					alert('Please enter a value.');
+				}
+			}
 		}
 
 		function reset(element) {
@@ -186,32 +209,29 @@
 			}
 		}
 	  
-	 	cToF.submit.addEventListener('click', triggerCelcToFahren);
+	 	cToF.submit.addEventListener('click', cToF.method);
 	 	cToF.reset.addEventListener('click', function() { reset(cToF.a); reset(cToF.answer); });
 
-		function triggerCelcToFahren() {
-			if ( !(cToF.a.value == '') ) {
-				cToF.answer.innerHTML = (((parseInt(cToF.a.value) - 32) * 5) / 9).toFixed(2) + ' &deg;F';
-			} else {
-				alert('no');
-			}
-		}
-
-		fToC.submit.addEventListener('click', triggerFahrenToCelc);
+		fToC.submit.addEventListener('click', fToC.method);
 		fToC.reset.addEventListener('click', function() { reset(fToC.a); reset(fToC.answer); });
-
-		function triggerFahrenToCelc() {
-			if ( !(fToC.a.value == '') ) {
-				fToC.answer.innerHTML = (((parseInt(fToC.a.value) * 9) / 5) + 32).toFixed(2) + ' &deg;C';
-			} else {
-				alert('no');
-			}
-		}
 
 	};
 
 
 	for ( var i=0; i<item.length; i++ ) {
+
+		// check where to put end tag for grid-section tag
+		if ( i !== 0 && (item[i].topic !== item[parseInt(i) - 1].topic) ) {
+			html += `</div>`;
+		}
+
+		// check where to put title
+		if ( i == 0 || item[i].topic !== item[parseInt(i) - 1].topic) {
+			html += `<div class="u-clear"></div>
+					 <h2>${item[i].topic}</h2>
+					 <div class="u-clear"></div><div class="grid-section">`;
+		}
+
 		html += `<div class="grid-item type-${item[i].type}">
 					<h3>${item[i].title}</h3>
 					<div class="row">`;
@@ -241,6 +261,8 @@
 					<div class="answer">Answer: <span></span></div>
 
 				</div>`;
+
+		
 	}
 
 	gridContainer.innerHTML = html;
