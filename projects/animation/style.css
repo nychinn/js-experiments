@@ -34,15 +34,23 @@ h2 {
     position: absolute;
     top: 16px;
     z-index: -1;
+    -webkit-animation-name: moveLine;
+    -webkit-animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
 }
 
 .line-wrap .text-wrap {
     z-index: 1;
     -webkit-animation-name: moveText;
-    -webkit-animation-duration: 3s;
+    -webkit-animation-duration: 5s;
     animation-iteration-count: infinite;
     animation-timing-function: ease-in-out;
     animation-direction: alternate;
+    position: absolute;
+    width: 210px;
+    left: 10px;
 }
 
 .line-wrap .text-a,
@@ -50,22 +58,44 @@ h2 {
     font-size: 32px;
     text-transform: uppercase;
     display: inline-block;
+    padding: 0 10px;
 }
 
 .line-wrap .text-a {
-    background-color: #eee;
+    background-color: #fff;
     margin-right: 10px;
 }
 
 .line-wrap .text-b {
-    background-color: #eee;
+    background-color: #fff;
 }
 
 @keyframes moveText {
-    from {
-        opacity: 0;
+    0% {
+        left: 10px;
     }
-    to {
-        opacity: 1;
+    33.33% {
+        left: 10px;
+    }
+    66.66% {
+        left: calc(100% - 220px);
+    }
+    100% {
+        left: calc(100% - 220px);
+    }
+}
+
+@keyframes moveLine {
+    0% {
+        width: 50%;
+        left: 0;
+    }
+    50% {
+        width: 100%;
+        right: 0;
+    }
+    100% {
+        width: 50%;
+        right: 0;
     }
 }
