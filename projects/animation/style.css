@@ -43,14 +43,7 @@ h2 {
 
 .line-wrap .text-wrap {
     z-index: 1;
-    -webkit-animation-name: moveText;
-    -webkit-animation-duration: 5s;
-    animation-iteration-count: infinite;
-    animation-timing-function: ease-in-out;
-    animation-direction: alternate;
-    position: absolute;
-    width: 210px;
-    left: 10px;
+    
 }
 
 .line-wrap .text-a,
@@ -64,6 +57,15 @@ h2 {
 .line-wrap .text-a {
     background-color: #fff;
     margin-right: 10px;
+
+    -webkit-animation-name: moveText;
+    -webkit-animation-duration: 5s;
+    animation-iteration-count: infinite;
+    animation-timing-function: ease-in-out;
+    animation-direction: alternate;
+    position: absolute;
+    width: 70px;
+    left: 10px;
 }
 
 .line-wrap .text-b {
@@ -83,6 +85,10 @@ h2 {
     100% {
         left: calc(100% - 220px);
     }
+}
+
+@keyframes moveText2 {
+
 }
 
 @keyframes moveLine {
