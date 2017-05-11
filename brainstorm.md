@@ -2,7 +2,7 @@
 
 ## JavaScript Project Ideas
 
-* Pig Latin Generator
+* Pig Latin Translator [done]
 * Text Editor: open, edit and save text documents
 * Pixel Editor: open, edit and save pixel images
 * Fortune Teller
@@ -20,6 +20,7 @@
 * Unit Converter
 * Binary to Decimal converter
 * Coin Flip Simulation
+* Spin to win wheel
 
 
 
