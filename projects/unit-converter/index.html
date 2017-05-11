@@ -129,7 +129,7 @@
 <body>
 	
 	<div class="container">
-		<h1>Hello</h1>
+		<h1>Unit Converter</h1>
 
 <!-- 		<h2>Temperature</h2> -->
 		<div class="grid-wrap"></div>
@@ -152,11 +152,18 @@
 			topic: 'Temperature'
 		},
 		{
-			title: 'test',
-			unitA: '',
-			unitB: '',
-			type: '',
-			topic: 'Something'
+			title: 'Inches to Cm',
+			unitA: 'Inches',
+			unitB: 'Cm',
+			type: 'inchesToCm',
+			topic: 'Length'
+		},
+		{
+			title: 'Cm to Inches',
+			unitA: 'Cm',
+			unitB: 'Inches',
+			type: 'cmToInches',
+			topic: 'Length'
 		}
 	];
 
@@ -201,6 +208,40 @@
 			}
 		}
 
+		// inches to cm
+		var iToCm = {
+			item: document.querySelector('.type-inchesToCm'),
+			a: document.querySelector('.type-inchesToCm .unitA'),
+			b: '',
+			submit: document.querySelector('.type-inchesToCm .button-convert'),
+			reset: document.querySelector('.type-inchesToCm .button-reset'),
+			answer: document.querySelector('.type-inchesToCm .answer > span'),
+			method: function() {
+				if ( !(iToCm.a.value == '') ) {
+					iToCm.answer.innerHTML = (parseInt(iToCm.a.value) * 2.54).toFixed(2) + ' cm';
+				} else {
+					alert('Please enter a value.');
+				}
+			}
+		}
+
+		// cm to inches
+		var cmToI = {
+			item: document.querySelector('.type-cmToInches'),
+			a: document.querySelector('.type-cmToInches .unitA'),
+			b: '',
+			submit: document.querySelector('.type-cmToInches .button-convert'),
+			reset: document.querySelector('.type-cmToInches .button-reset'),
+			answer: document.querySelector('.type-cmToInches .answer > span'),
+			method: function() {
+				if ( !(cmToI.a.value == '') ) {
+					cmToI.answer.innerHTML = (parseInt(cmToI.a.value) * 0.393701).toFixed(2) + ' inches';
+				} else {
+					alert('Please enter a value.');
+				}
+			}
+		}
+
 		function reset(element) {
 			if ( element.value ) {
 				element.value = '';
@@ -214,6 +255,12 @@
 
 		fToC.submit.addEventListener('click', fToC.method);
 		fToC.reset.addEventListener('click', function() { reset(fToC.a); reset(fToC.answer); });
+
+		iToCm.submit.addEventListener('click', iToCm.method);
+		iToCm.reset.addEventListener('click', function() { reset(iToCm.a); reset(iToCm.answer); });
+
+		cmToI.submit.addEventListener('click', cmToI.method);
+		cmToI.reset.addEventListener('click', function() { reset(cmToI.a); reset(cmToI.answer); });
 
 	};
 
