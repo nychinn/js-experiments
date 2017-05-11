@@ -58,22 +58,7 @@
 				
 			}
 
-			@media screen and (max-width: 768px) {
-				.gridItem {
-					width: 49%;
-					padding-bottom: 50%;
-				}
-				.gridItem:nth-child(2n) {
-					margin-right: 0;
-				}
-				.gridItem:nth-child(3n) {
-					margin-right: 2%;
-				}
-			}
-
-			@media screen and (max-width: 600px) {
-				
-			}
+			
 
 			.gridItem:nth-child(2n) {
 				background-color: #ccc;
@@ -225,6 +210,39 @@
 				     -o-transform: translateY(18%) translateX(50%) rotate(-45deg) scale(0);
 				        transform: translateY(18%) translateX(50%) rotate(-45deg) scale(0);
 			}
+			
+			/* tablet */
+			@media screen and (max-width: 788px) {
+				.container {
+					-webkit-box-sizing: border-box;
+					   -moz-box-sizing: border-box;
+					        box-sizing: border-box;
+					padding: 0 20px;
+				}
+				.gridItem {
+					width: 49%;
+					padding-bottom: 50%;
+				}
+				.gridItem:nth-child(2n) {
+					margin-right: 0;
+				}
+				.gridItem:nth-child(3n) {
+					margin-right: 2%;
+				}
+			}
+			
+			/* mobile */
+			@media screen and (max-width: 600px) {
+				.container {
+					-webkit-box-sizing: border-box;
+					   -moz-box-sizing: border-box;
+					        box-sizing: border-box;
+					padding: 0 20px;
+				}
+				.gridItem {
+					width: 100%;
+				}
+			}
 		</style>
 
 	</head>
@@ -260,6 +278,11 @@
 					link: 'projects/pig-latin/index.html',
 					title: 'Pig Latin',
 					image: 'https://unsplash.it/500/500?image=930'
+				},
+				{
+					link: 'projects/unit-converter/index.html',
+					title: 'Unit Converter',
+					image: 'https://unsplash.it/500/500?image=977'
 				}
 			]
 
