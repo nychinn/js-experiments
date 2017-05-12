@@ -42,7 +42,7 @@ function animateIn(){
 	Velocity(leviImg, {translateY: -1000 }, {duration: 1, easing: "ease-in-out"});
 	Velocity(leviImg, {translateY: 100 }, {duration: 1500, delay: 500, easing: "ease-in"});
 
-	Velocity(leviImg, {translateY: 125 }, {duration: 1000, loop: 10, easing: "swing"});
+	Velocity(leviImg, {translateY: 110 }, {duration: 1000, loop: true, easing: "swing"});
 
 
 
