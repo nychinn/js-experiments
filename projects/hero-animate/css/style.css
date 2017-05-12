@@ -34,6 +34,25 @@ body {
 	font-size: 48px;
 }
 
+	.heroFloat {
+		background-color: #fff;
+		background-image: url(https://unsplash.it/1920/1600?image=1081);
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		     -o-background-size: cover;
+		        background-size: cover;
+		height: 0;
+		padding-bottom: 56.25%;
+		text-align: center;
+	}
+
+	.heroFloat h1 {
+		z-index: 50;
+		position: relative;
+	}
+
+
+
 .animTextRow {
 	background-color: #eee;
 	padding: 20px;
