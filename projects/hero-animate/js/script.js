@@ -33,7 +33,14 @@ function animateIn(){
 
 	Velocity(section, {opacity:0}, {duration: 1});
 	Velocity(section, 'transition.flipYIn', {stagger:500, duration:500, delay:500, easing:"ease-in-out"});
+}
 
+function charsAnimateIn() {
+	instance = new SplitType('.animText', {
+		split: 'words, chars', 
+		position: 'absolute'
+	});
+	
 	Velocity( instance.chars, 'transition.perspectiveLeftIn', { duration: 500, stagger: 100 })
 }
 
@@ -44,5 +51,11 @@ function listAnimateIn() {
 
 
 window.addEventListener('load', animateIn);
+window.addEventListener('load', charsAnimateIn);
 window.addEventListener('load', listAnimateIn);
+window.addEventListener('resize', charsAnimateIn);
+
+
+
+
 
