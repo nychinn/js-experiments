@@ -41,7 +41,6 @@
 			  (#{$i + 1}px #{$i + 1}px 0px #{$color})
 			  ;
 	}
-
 	@return $val;
 }
 
@@ -74,3 +73,94 @@
 	    1px -1px 0px $color
 	);
 }
+
+
+
+
+
+
+
+// -- E X P E R I M E N T A T I O N -- //
+
+
+// -- create mixin to control thickness of text outline first!!
+@function createOutline($color: #000, $weight: 1) {
+
+	@if $weight > 1 {
+		@for $i from 1 through $weight {
+			
+		}
+	}
+}
+
+
+
+
+
+@mixin textOutline($color: #000, $weight: 1) {	
+	@include textShadow(
+		-1px -1px 0px $color,
+	    -1px 0px 0px $color,
+	    -1px 1px 0px $color,
+	    1px 1px 0px $color,
+	    1px -1px 0px $color
+	);
+}
+
+
+
+
+
+// -- try to create mixin to adjust both thickness and shadow weight
+// -- atm it fails
+@function testing($color, $thickness: 1, $times: 1) {
+	$val: 0px 0px $color;
+	
+	@for $i from 1 through $times {
+		$val: #{$val}, 
+			  (#{$i - $thickness}px #{$i + $thickness}px 0px #{$color}),
+			  (#{$i - $thickness}px #{$i - 0}px 0px #{$color}),
+			  (#{$i - $thickness}px #{$i - $thickness}px 0px #{$color}),
+			  (#{$i + $thickness}px #{$i + $thickness}px 0px #{$color}),
+			  (#{$i + $thickness}px #{$i + 0}px 0px #{$color}),
+			  (#{$i + $thickness}px #{$i + $thickness}px 0px #{$color})
+			  ;
+	}
+	@return $val;
+}
+
+@mixin text($color, $outline: false, $thickness: 1, $times: 1) {
+	@if ( $outline == false ) {
+		text-shadow: makeLongShadow($color, $times);
+	} @else {
+		text-shadow: 
+			(-#{$thickness}px -#{$thickness}px 0px $color),
+		    (-#{$thickness}px 0px 0px $color),
+		    (-#{$thickness}px #{$thickness}px 0px $color),
+		    (#{$thickness}px #{$thickness}px 0px $color),
+		    (#{$thickness}px -#{$thickness}px 0px $color),
+		    (-#{$thickness}px #{$thickness}px 0px $color),
+		    makeLongShadow($color, $times),
+		    testing($color, $thickness, $times);
+	}
+}
+
+
+
+
+
+
+
+// -- https://gist.github.com/nathggns/2984123
+// -- still kinda messy!!
+@mixin stroke($width, $color) {
+  $shadow: ();
+  @for $i from -$width through $width {
+    $shadow: append($shadow,#{$width}px #{$i}px $color, comma);
+    $shadow: append($shadow,#{-$width}px #{$i}px $color, comma);
+    $shadow: append($shadow,#{$i}px #{$width}px $color, comma);
+    $shadow: append($shadow,#{$i}px #{-$width}px $color, comma);
+  }
+  text-shadow: $shadow;
+}
+

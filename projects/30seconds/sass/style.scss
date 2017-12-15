@@ -8,19 +8,36 @@
 html, body {
 	font-family: Helvetica, Arial, sans-serif;
 	padding: 0;
-	margin: 0;
+	margin: 0; 
 }
 
 h1 {
-	color: pink;
-	letter-spacing: 0.1em;
+	@include boxSizing;
+	color: #fff;
+	letter-spacing: 0.05em;
 	text-transform: uppercase;
 	font-size: 72px;	
+	margin: 0 0 100px;
 	
-	@include seamlessTextShadow(crimson, true, 5);
+	@include seamlessTextShadow(#333, true, 5);
+	
+	// @include stroke(2, #000);
+	
+	// animation-name: shadow;
+	// animation-duration: 1.5s;
+	// animation-direction: reverse;
+	// animation-iteration-count: infinite;
 }
 
-// @keyframe
+// @keyframes shadow {
+// 	from {
+// 		@include seamlessTextShadow(rgba(#000, 0), true, 1);
+// 	}
+
+// 	to {
+// 		@include seamlessTextShadow(#000, true, 8);
+// 	}
+// }
 
 .inner {
 	@include boxSizing;
@@ -28,6 +45,8 @@ h1 {
 	max-width: 1250px;
 	width: 100%;
 	margin: 0 auto;
+	background-color: #fff;
+	min-height: 100vh; 
 	
 	a {
 		color: #000;
@@ -35,6 +54,16 @@ h1 {
 
 	h1 {
 		margin: 0;
+	}
+
+	ul {
+		margin: 0;
+		padding: 0 0 0 20px;
+		  
+	}
+
+	ul li {
+		
 	}
 }
 
