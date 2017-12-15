@@ -1,0 +1,63 @@
+
+
+
+@import 'globals/mixins';
+
+
+
+html, body {
+	font-family: Helvetica, Arial, sans-serif;
+	padding: 0;
+	margin: 0;
+}
+
+h1 {
+	color: hotpink;
+	letter-spacing: 0.1em;
+	text-transform: uppercase;
+	font-size: 60px; 
+	// @include textShadow(
+	// 	1px 1px 0 blue, 
+	// 	2px 2px 0 blue,
+	// 	3px 3px 0 blue,
+	// 	4px 4px 0 blue,
+	// 	5px 5px 0 blue,
+	// 	6px 6px 0 blue,
+	// 	7px 7px 0 blue,
+	// ); 
+	
+	
+	// @include textOutline();
+	@include seamlessTextShadow(black, true, 5);
+}
+
+.inner {
+	@include boxSizing;
+	padding: 20px 30px;
+	max-width: 1250px;
+	width: 100%;
+	margin: 0 auto;
+	
+	a {
+		color: #000;
+	}
+
+	h1 {
+		margin: 0;
+	}
+}
+
+.line {
+	display: block;
+	height: 1px;
+	background-color: #ddd; 
+	margin: 20px 0;
+}
+
+code {
+	@include boxSizing;
+	display: block; 
+	padding: 10px;
+	color: #fff;
+	background-color: #333;
+}

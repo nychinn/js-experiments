@@ -1,0 +1,71 @@
+
+@mixin boxSizing {
+	-webkit-box-sizing: border-box; 
+	-moz-box-sizing: border-box; 
+	box-sizing: border-box; 
+}
+
+@mixin boxShadow($params...) {
+	-webkit-box-shadow: $params;
+    -moz-box-shadow: $params;
+    box-shadow: $params;
+}
+
+@mixin textShadow($params...) {
+	-webkit-text-shadow: $params;
+    -moz-text-shadow: $params;
+    text-shadow: $params;
+}
+
+
+@function makeLongShadow($color, $times: 1) {
+	$val: 0px 0px $color;
+	
+	@for $i from 1 through $times {
+		$val: #{$val}, #{$i}px #{$i}px #{$color};
+	}
+
+	@return $val;
+}
+
+@function makeLongOffsetShadow($color, $times: 1) {
+	$val: 0px 0px $color;
+	
+	@for $i from 1 through $times {
+		$val: #{$val}, 
+			  #{($i - 1)}px #{($i + 1)}px #{$color}, 
+		      #{($i - 1)}px #{($i - 1)}px #{$color};
+	}
+
+	@return $val;
+}
+
+//-- mixin to create seamless shadow ^o^)/
+@mixin seamlessTextShadow($color, $outline: false, $times: 1) {
+	
+	@if $outline == false {
+		text-shadow: makeLongShadow($color, $times);
+	} @else {
+		text-shadow: 
+			-1px -1px 0px $color,
+		    -1px 0px 0px $color,
+		    -1px 1px 0px $color,
+		    1px 1px 0px $color,
+		    1px -1px 0px $color,
+		    -1px 1px 0px $color,
+		    makeLongShadow($color, $times),
+		    makeLongOffsetShadow($color, $times);
+	}
+}
+
+
+// -- text with 1px outline
+@mixin textOutline($color: #000) {	
+	@include textShadow(
+		-1px -1px 0px $color,
+	    -1px 0px 0px $color,
+	    -1px 1px 0px $color,
+	    1px 1px 0px $color,
+	    1px -1px 0px $color
+	);
+}
