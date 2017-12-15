@@ -4,11 +4,11 @@ html, body {
   margin: 0; }
 
 h1 {
-  color: hotpink;
+  color: pink;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  font-size: 60px;
-  text-shadow: -1px -1px 0px black, -1px 0px 0px black, -1px 1px 0px black, 1px 1px 0px black, 1px -1px 0px black, -1px 1px 0px black, 0px 0px black, 1px 1px black, 2px 2px black, 3px 3px black, 4px 4px black, 5px 5px black, 0px 0px black, 0px 2px black, 0px 0px black, 1px 3px black, 1px 1px black, 2px 4px black, 2px 2px black, 3px 5px black, 3px 3px black, 4px 6px black, 4px 4px black; }
+  font-size: 72px;
+  text-shadow: -1px -1px 0px crimson, -1px 0px 0px crimson, -1px 1px 0px crimson, 1px 1px 0px crimson, 1px -1px 0px crimson, -1px 1px 0px crimson, 0px 0px crimson, 1px 1px 0px crimson, 2px 2px 0px crimson, 3px 3px 0px crimson, 4px 4px 0px crimson, 5px 5px 0px crimson, 0px 0px crimson, 0px 2px 0px crimson, 0px 1px 0px crimson, 0px 0px 0px crimson, 2px 2px 0px crimson, 2px 1px 0px crimson, 2px 2px 0px crimson, 1px 3px 0px crimson, 1px 2px 0px crimson, 1px 1px 0px crimson, 3px 3px 0px crimson, 3px 2px 0px crimson, 3px 3px 0px crimson, 2px 4px 0px crimson, 2px 3px 0px crimson, 2px 2px 0px crimson, 4px 4px 0px crimson, 4px 3px 0px crimson, 4px 4px 0px crimson, 3px 5px 0px crimson, 3px 4px 0px crimson, 3px 3px 0px crimson, 5px 5px 0px crimson, 5px 4px 0px crimson, 5px 5px 0px crimson, 4px 6px 0px crimson, 4px 5px 0px crimson, 4px 4px 0px crimson, 6px 6px 0px crimson, 6px 5px 0px crimson, 6px 6px 0px crimson; }
 
 .inner {
   -webkit-box-sizing: border-box;

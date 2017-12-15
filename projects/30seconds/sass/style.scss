@@ -12,24 +12,15 @@ html, body {
 }
 
 h1 {
-	color: hotpink;
+	color: pink;
 	letter-spacing: 0.1em;
 	text-transform: uppercase;
-	font-size: 60px; 
-	// @include textShadow(
-	// 	1px 1px 0 blue, 
-	// 	2px 2px 0 blue,
-	// 	3px 3px 0 blue,
-	// 	4px 4px 0 blue,
-	// 	5px 5px 0 blue,
-	// 	6px 6px 0 blue,
-	// 	7px 7px 0 blue,
-	// ); 
+	font-size: 72px;	
 	
-	
-	// @include textOutline();
-	@include seamlessTextShadow(black, true, 5);
+	@include seamlessTextShadow(crimson, true, 5);
 }
+
+// @keyframe
 
 .inner {
 	@include boxSizing;
