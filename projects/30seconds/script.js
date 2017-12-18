@@ -23,6 +23,7 @@ var arrayDiffA = ['pikachu', 'charmander', 'squirtle', 'bulbasaur'];
 var arrayDiffB = ['jigglypuff', 'pikachu'];
 
 var arrayDiffOriginal = "[" + arrayDiffA + "], [" + arrayDiffB + "]";
+var arrayDiffOriginal = JSON.stringify(arrayDiffA) + ', ' + JSON.stringify(arrayDiffB);
 var arrayDiffOutput = difference(arrayDiffA, arrayDiffB);
 
 $('.arrayDiffOriginal').text(arrayDiffOriginal);
@@ -40,7 +41,7 @@ const intersection = (a, b) => {
 var arrayIntA = ['betty', 'jughead', 'toni', 'veronica'];
 var arrayIntB = ['betty', 'archie', 'veronica', 'jennifer', 'valerie'];
 
-var arrayIntOriginal = "[" + arrayIntA + "], [" + arrayIntB + "]";
+var arrayIntOriginal = JSON.stringify(arrayIntA) + ', ' + JSON.stringify(arrayIntB);
 var arrayIntOutput = intersection(arrayIntA, arrayIntB);
 
 $('.arrayIntOriginal').text(arrayIntOriginal);
@@ -89,13 +90,31 @@ var arrChunk = [1,2,3,4,5,6,6,7,8,9];
 var arrayChunkOriginal = "[" + arrChunk + "]";
 var arrayMinOutput = chunk(arrChunk, 3) ;
 
-$('.arrayChunkOriginal').text(arrayChunkOriginal);
+$('.arrayChunkOriginal').text( JSON.stringify(arrChunk) );
 $('.arrayChunkOutput').text( JSON.stringify(arrayMinOutput) );
 
 
 
 
 // -- Array Compact
+const compact = (arr) => arr.filter(Boolean);
+
+var arrCompact = ['venus', false, 1, 0, 'madoka', 'moon', null, undefined, 'abc', 'luna', 'artemis', 'jupiter', 'mars', 'mercury', 'yugi'];
+
+var arrayCompactOriginal = JSON.stringify(arrCompact);
+var arrayCompactOutput = compact(arrCompact);
+
+$('.arrayCompactOriginal').text(arrayCompactOriginal);
+$('.arrayCompactOutput').text( JSON.stringify(arrayCompactOutput) );
+
+
+
+
+// -- Count Occurrences
+// const countOccurrences = (arr, value) =>
+
+
+
 
 
 
