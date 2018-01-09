@@ -1,0 +1,13 @@
+
+html,
+body {
+	font-family: Helvetica, Arial, sans-serif;
+}
+
+.active {
+	color: pink;
+}
+
+.text-danger {
+	color: crimson;
+}

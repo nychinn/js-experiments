@@ -8,10 +8,7 @@
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
         <link rel="manifest" href="site.webmanifest">
-        <link rel="apple-touch-icon" href="icon.png">
         <!-- Place favicon.ico in the root directory -->
-
-        <link rel="stylesheet" href="style.css">
     </head>
 
     <body>
@@ -23,33 +20,32 @@
         <!-- Add your site or application content here -->
 
         <div class="container">
-
-            <div id="watch-example">
-              <p>
-                  Ask a yes/no question:
-                  <input v-model="question" type="text">
-              </p>
-              <p>{{ answer }}</p>
-            </div>     
-
-            <div id="app">
-                <div class="static" v-bind:class="classObject">Hello</div>
-            </div>
-
+            <div id="content"></div>
         </div>
 
 
         
-        <!-- Since there is already a rich ecosystem of ajax libraries    -->
-        <!-- and collections of general-purpose utility methods, Vue core -->
-        <!-- is able to remain small by not reinventing them. This also   -->
-        <!-- gives you the freedom to use what you're familiar with. -->
-        <script src="https://cdn.jsdelivr.net/npm/axios@0.12.0/dist/axios.min.js"></script>
-        <script src="https://cdn.jsdelivr.net/npm/lodash@4.13.1/lodash.min.js"></script>
+        <script>
+            function convertHTML(str) {
+              // &colon;&rpar;
+              var newString = [];
+
+              // console.log(strArr);
+              
+              for ( var i=0; i < str.length; i++ ) {
+                newString.push(str[i]);
+                console.log(str[i]);
+              }
+
+              return (newString.join()).replace(',', '');
+            }
+
+            // convertHTML("Dolce & Gabbana");
+
+            document.getElementById('content').innerHTML = convertHTML("Dolce & Gabbana");
+        </script>
 
 
-        <script src="https://cdn.jsdelivr.net/npm/vue"></script>
-        <script src="script.js"></script>
 
         <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
         <script>
@@ -59,3 +55,10 @@
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
     </body>
 </html>
+
+
+
+
+
+
+
