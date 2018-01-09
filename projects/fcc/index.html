@@ -20,29 +20,92 @@
         <!-- Add your site or application content here -->
 
         <div class="container">
-            <div id="content"></div>
+            <div id="convertHtml"></div>
+            <div id="spinalCase"></div>
+            <div id="sumFibs"></div>
         </div>
 
 
         
         <script>
+
+            //-- 
             function convertHTML(str) {
               // &colon;&rpar;
               var newString = [];
-
-              // console.log(strArr);
               
               for ( var i=0; i < str.length; i++ ) {
-                newString.push(str[i]);
-                console.log(str[i]);
+                var char = str[i];
+
+                if ( char == '&' ) {
+                    newString.push("&amp;");
+                } else if ( char == '<' ) {
+                    newString.push("&lt;");
+                } else if ( char == '>' ) {
+                    newString.push("&gt;");
+                } else if ( char == '"' ) {
+                    newString.push("&quot;");
+                } else if ( char == "'" ) {
+                    newString.push("&apos;");
+                } else {
+                    newString.push(str[i]);
+                }
               }
 
-              return (newString.join()).replace(',', '');
+              return (newString.join(''));
             }
 
-            // convertHTML("Dolce & Gabbana");
+            document.getElementById('convertHtml').innerHTML = convertHTML("Dolce & Gabbana");
 
-            document.getElementById('content').innerHTML = convertHTML("Dolce & Gabbana");
+
+            //-- SPINAL CASE
+            function spinalCase(str) {
+                var newString = [];
+
+                for ( var i=0; i < str.length; i++ ) {
+                    var char = str[i];
+                    var nextChar = str[parseInt(i+1)];
+
+                    if ( char == ' ' || char == '_' ) {
+                        newString.push('-');
+                    } else if ( nextChar && nextChar == nextChar.toUpperCase() && nextChar !== ' ' && nextChar !== '_' ) {
+                        newString.push(char);
+                        newString.push('-');
+                    } else if ( char == '-' ) {
+                        newString.push('');
+                    } else {
+                        newString.push(char.toLowerCase());
+                    }
+                }
+
+                return (newString.join(''));
+            }
+
+            document.getElementById('spinalCase').innerHTML = spinalCase("Teletubbies say Eh-oh");
+
+
+            //-- SUM OF ALL ODD FIBONACCI NUMBERS
+            function sumFibs(num) {
+                var prev = 0;
+                var curr = 1;
+                var result = 0;
+
+                // as long as current is smaller than max number
+                while ( curr <= num ) {
+                    // check if its an odd number
+                    if ( curr % 2 !== 0 ) {
+                        result += curr;
+                    }
+
+                    curr += prev;
+                    prev = curr - prev;
+                }
+
+                console.log(result);
+            }
+
+            sumFibs(10);
+
         </script>
 
 
