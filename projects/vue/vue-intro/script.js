@@ -64,6 +64,33 @@ var app6 = new Vue({
 });
 
 
+//*-- COMPONENTS
+
+//- important concept in vue
+//- build large scale apps in self contained, reusable elements
+//- component = vue instance with predefined opts
+//- client side template
+
+Vue.component('todo-item', {
+	//- 'prop' is a custom attribute
+	props: ['todo'],
+	template: '<li>{{ todo.text }}</li>'
+})
+
+var app7 = new Vue({
+	el: '#app-7',
+	data: {
+		groceryList: [
+			{ id: 0, text: 'Vegetables' },
+			{ id: 1, text: 'Cheese' },
+			{ id: 2, text: 'Whatever humans are supposed to eat' }
+		]
+	}
+});
+
+
+
+
 
 
 
