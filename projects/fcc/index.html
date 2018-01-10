@@ -23,6 +23,8 @@
             <div id="convertHtml"></div>
             <div id="spinalCase"></div>
             <div id="sumFibs"></div>
+            <div id="fibonacci"></div>
+            <div id="smallestCommon"></div>
         </div>
 
 
@@ -94,17 +96,52 @@
                 while ( curr <= num ) {
                     // check if its an odd number
                     if ( curr % 2 !== 0 ) {
+                        // add current number to the sum
                         result += curr;
                     }
 
+                    // new current number will be current num + prev num
                     curr += prev;
+
+                    // new prev number will be current num - prev num
                     prev = curr - prev;
                 }
 
-                console.log(result);
+                return result;
             }
 
-            sumFibs(10);
+            document.getElementById('fibonacci').innerHTML = sumFibs(10);
+
+
+            //-- SUM ALL PRIMES
+            // function sumPrimes(num) {
+            //     var primes = [0, 1];
+
+            //     // figure out all primes from 2 - number
+            //     for ( var i = 2; i < num; i++ ) {
+
+            //         // divide the number with 2 - square root of number
+            //         // anything that only is divisible by 1 or itself is a prime
+            //         for ( var j = 2; j < Math.sqrt(num); j++ ) {
+            //             if ( i % j == 0 ) {
+            //                 return false;
+            //             }
+            //         }
+            //     }
+            // }
+
+            // document.getElementById('fibonacci').innerHTML = sumPrimes(10);
+
+
+            //-- SMALLEST COMMON MULTIPLE
+            // function smallestCommons(arr) {
+            //     var arr;
+            // }
+
+            // document.getElementById('smallestCommon').innerHTML = smallestCommons([1,5]);
+
+
+
 
         </script>
 
@@ -116,8 +153,13 @@
             ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
         </script>
         <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
     </body>
 </html>
+
+
+
+
 
 
 
