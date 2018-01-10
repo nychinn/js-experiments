@@ -68,6 +68,27 @@ h1 {
   outline:0;
 }
 
+.voiceinator select {
+  margin: 0 0 20px;
+  -webkit-appearance: none;
+     -moz-appearance: none;
+          appearance: none;
+}
+
+.voiceinator .select {
+  position: relative;
+}
+
+.voiceinator .select::after {
+  content: "\f123";
+  font-family: 'Ionicons';
+  font-size: 15px;
+  color: #333;
+  position: absolute;
+  top: 16px;
+  right: 10px;
+}
+
 textarea {
   height: 20rem;
 }
