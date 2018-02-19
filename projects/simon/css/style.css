@@ -1,0 +1,61 @@
+
+:root {
+	--bgcolr: #FFF;
+	--titlecolr: #333;
+	--green: #6BF178;
+	--red: #FF5964;
+	--blue: #30BCED;
+	--yellow: #FFE74C;
+}
+
+body {
+	font-family: Helvetica, Arial, sans-serif;
+	background-color: var(--bgcolr);
+}
+
+.simonWrap {
+	text-align: center;
+}
+
+.simonTitle {
+	color: var(--titlecolr);
+}
+
+.simonCircle {
+	margin: 0 auto;
+	display: flex;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	width: 500px;
+	height: 500px;
+	overflow: hidden;
+}
+
+.simonQuarter {
+	display: block;
+	height: 250px;
+	width: 250px;
+	background-color: red;
+	cursor: pointer;
+}
+
+.simonQuarter--green {
+	background-color: var(--green);
+}
+
+	.simonQuarter--green_pressed
+
+.simonQuarter--red {
+	background-color: var(--red);
+}
+
+.simonQuarter--blue {
+	background-color: var(--blue);
+}
+
+.simonQuarter--yellow {
+	background-color: var(--yellow);
+}
