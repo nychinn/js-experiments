@@ -1,0 +1,169 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+        <link rel="manifest" href="site.webmanifest">
+        <!-- Place favicon.ico in the root directory -->
+    </head>
+
+    <body>
+        <!--[if lte IE 9]>
+            <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
+        <![endif]-->
+
+        <!-- Learning from: https://vuejs.org/v2/guide/ -->
+        <!-- Add your site or application content here -->
+
+        <div class="container">
+            <div id="convertHtml"></div>
+            <div id="spinalCase"></div>
+            <div id="sumFibs"></div>
+            <div id="fibonacci"></div>
+            <div id="smallestCommon"></div>
+        </div>
+
+
+        
+        <script>
+
+            //-- 
+            function convertHTML(str) {
+              // &colon;&rpar;
+              var newString = [];
+              
+              for ( var i=0; i < str.length; i++ ) {
+                var char = str[i];
+
+                if ( char == '&' ) {
+                    newString.push("&amp;");
+                } else if ( char == '<' ) {
+                    newString.push("&lt;");
+                } else if ( char == '>' ) {
+                    newString.push("&gt;");
+                } else if ( char == '"' ) {
+                    newString.push("&quot;");
+                } else if ( char == "'" ) {
+                    newString.push("&apos;");
+                } else {
+                    newString.push(str[i]);
+                }
+              }
+
+              return (newString.join(''));
+            }
+
+            document.getElementById('convertHtml').innerHTML = convertHTML("Dolce & Gabbana");
+
+
+            //-- SPINAL CASE
+            function spinalCase(str) {
+                var newString = [];
+
+                for ( var i=0; i < str.length; i++ ) {
+                    var char = str[i];
+                    var nextChar = str[parseInt(i+1)];
+
+                    if ( char == ' ' || char == '_' ) {
+                        newString.push('-');
+                    } else if ( nextChar && nextChar == nextChar.toUpperCase() && nextChar !== ' ' && nextChar !== '_' ) {
+                        newString.push(char);
+                        newString.push('-');
+                    } else if ( char == '-' ) {
+                        newString.push('');
+                    } else {
+                        newString.push(char.toLowerCase());
+                    }
+                }
+
+                return (newString.join(''));
+            }
+
+            document.getElementById('spinalCase').innerHTML = spinalCase("Teletubbies say Eh-oh");
+
+
+            //-- SUM OF ALL ODD FIBONACCI NUMBERS
+            function sumFibs(num) {
+                var prev = 0;
+                var curr = 1;
+                var result = 0;
+
+                // as long as current is smaller than max number
+                while ( curr <= num ) {
+                    // check if its an odd number
+                    if ( curr % 2 !== 0 ) {
+                        // add current number to the sum
+                        result += curr;
+                    }
+
+                    // new current number will be current num + prev num
+                    curr += prev;
+
+                    // new prev number will be current num - prev num
+                    prev = curr - prev;
+                }
+
+                return result;
+            }
+
+            document.getElementById('fibonacci').innerHTML = sumFibs(10);
+
+
+            //-- SUM ALL PRIMES
+            // function sumPrimes(num) {
+            //     var primes = [0, 1];
+
+            //     // figure out all primes from 2 - number
+            //     for ( var i = 2; i < num; i++ ) {
+
+            //         // divide the number with 2 - square root of number
+            //         // anything that only is divisible by 1 or itself is a prime
+            //         for ( var j = 2; j < Math.sqrt(num); j++ ) {
+            //             if ( i % j == 0 ) {
+            //                 return false;
+            //             }
+            //         }
+            //     }
+            // }
+
+            // document.getElementById('fibonacci').innerHTML = sumPrimes(10);
+
+
+            //-- SMALLEST COMMON MULTIPLE
+            // function smallestCommons(arr) {
+            //     var arr;
+            // }
+
+            // document.getElementById('smallestCommon').innerHTML = smallestCommons([1,5]);
+
+
+
+
+        </script>
+
+
+
+        <!-- Google Analytics: change UA-XXXXX-Y to be your site's ID. -->
+        <script>
+            window.ga=function(){ga.q.push(arguments)};ga.q=[];ga.l=+new Date;
+            ga('create','UA-XXXXX-Y','auto');ga('send','pageview')
+        </script>
+        <script src="https://www.google-analytics.com/analytics.js" async defer></script>
+
+    </body>
+</html>
+
+
+
+
+
+
+
+
+
+
+

@@ -111,7 +111,34 @@ $('.arrayCompactOutput').text( JSON.stringify(arrayCompactOutput) );
 
 
 // -- Count Occurrences
-// const countOccurrences = (arr, value) =>
+const countOcc = (arr, value) => arr.reduce((a,v) => v === value ? a + 1 : a + 0, 0);
+
+var arrCount = ['orange', 'apple', 'apple', 'banana', 'persimmon', 'lemon', 'apple', 'grapes'];
+
+var arrayCountOriginal = JSON.stringify(arrCount);
+var arrayCountOutput = countOcc(arrCount, 'apple');
+
+$('.arrayCountOriginal').text(arrayCountOriginal);
+$('.arrayCountOutput').text(arrayCountOutput);
+
+
+
+
+// -- Deep Flatten
+const deepFlatten = arr => [].concat(...arr.map(v => Array.isArray(v) ? deepFlatten(v) : v));
+
+var arrFlatten = [ ['lions', 'tigers', 'bears'], [ ['goldilocks', 'mama bear', 'papa bear', 'baby bear'], ['grimes', 'taylor', 'melanie'] ] ];
+
+var flattenOriginal = JSON.stringify(arrFlatten);
+var flattenOutput = deepFlatten(arrFlatten);
+
+$('.flattenOriginal').text(flattenOriginal);
+$('.flattenOutput').text( JSON.stringify(flattenOutput) );
+
+
+
+
+
 
 
 
