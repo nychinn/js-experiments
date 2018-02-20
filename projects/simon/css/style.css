@@ -3,9 +3,13 @@
 	--bgcolr: #FFF;
 	--titlecolr: #333;
 	--green: #6BF178;
+	--greenActive: #1dea31;
 	--red: #FF5964;
+	--redActive: #ff0415;
 	--blue: #30BCED;
+	--blueActive: #108db8;
 	--yellow: #FFE74C;
+	--yellowActive: #f6d500;
 }
 
 body {
@@ -46,16 +50,49 @@ body {
 	background-color: var(--green);
 }
 
-	.simonQuarter--green_pressed
+	.simonQuarter--green.j-active {
+		background-color: var(--greenActive);
+	}
 
 .simonQuarter--red {
 	background-color: var(--red);
 }
 
+	.simonQuarter--red.j-active {
+		background-color: var(--redActive);
+	}
+
 .simonQuarter--blue {
 	background-color: var(--blue);
 }
 
+	.simonQuarter--blue.j-active {
+		background-color: var(--blueActive);
+	}
+
+
 .simonQuarter--yellow {
 	background-color: var(--yellow);
 }
+
+	.simonQuarter--yellow.j-active {
+		background-color: var(--yellowActive);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
