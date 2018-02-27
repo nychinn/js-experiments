@@ -25,6 +25,34 @@ body {
 	color: var(--titlecolr);
 }
 
+.simonStart {
+	background-color: #333;
+	color: #fff;
+	display: inline-block;
+	padding: 10px 20px;
+	text-transform: uppercase;
+	letter-spacing: 0.1em;
+	font-size: 32px;
+	top: 50%;
+	cursor: pointer;
+	border-radius: 5px;
+	position: absolute;
+	-webkit-transition: .3s ease-in-out;
+	   -moz-transition: .3s ease-in-out;
+	    -ms-transition: .3s ease-in-out;
+	     -o-transition: .3s ease-in-out;
+	        transition: .3s ease-in-out;
+	-webkit-transform: translateX(-50%);
+	   -moz-transform: translateX(-50%);
+	    -ms-transform: translateX(-50%);
+	     -o-transform: translateX(-50%);
+	        transform: translateX(-50%);
+}
+
+.simonStart:hover {
+	background-color: #444;
+}
+
 .simonCircle {
 	margin: 0 auto;
 	display: flex;
