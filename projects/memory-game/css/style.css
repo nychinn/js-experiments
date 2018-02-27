@@ -1,0 +1,85 @@
+*,
+*::before,
+*::after {
+	box-sizing: border-box;
+}
+
+body {
+	margin: 20px 0;
+	background: #6589F9;
+}
+
+.grid {
+	max-width: 960px;
+	margin: 0 auto;
+	display: flex;
+	-webkit-justify-content: space-evenly;
+	        justify-content: space-evenly;
+	-webkit-flex-wrap: wrap;
+	    -ms-flex-wrap: wrap;
+	        flex-wrap: wrap;
+}
+
+.card {
+	position: relative;
+	box-sizing: border-box;
+	margin: 5px;
+	cursor: pointer;
+	
+	transition: all .4s linear;
+	transform-style: preserve-3d;
+}
+
+.card,
+.back,
+.front {
+	height: 150px;
+	width: 150px;
+}
+
+.back,
+.front {
+	position: absolute;
+	backface-visibility: hidden;
+}
+
+.front {
+	background: #FAB942 url('../img/question.gif') no-repeat center center / contain;
+}
+
+.back {
+	transform: rotateY(180deg);
+	background-color: white;
+	background-size: contain;
+	background-repeat: no-repeat;
+	background-position: center center;
+}
+
+.selected {
+	transform: rotateY(180deg);
+}
+
+.match .front {
+	background: transparent !important;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
