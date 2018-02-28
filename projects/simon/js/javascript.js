@@ -19,19 +19,23 @@
 
 const colours = [{
 		'num': 1,
-		'colour': 'green'
+		'colour': 'green',
+		'sound': '../sounds/a1s.wav'
 	},
 	{
 		'num': 2,
-		'colour': 'red'
+		'colour': 'red',
+		'sound': '../sounds/f1.wav'
 	},
 	{
 		'num': 3,
-		'colour': 'blue'
+		'colour': 'blue',
+		'sound': '../sounds/g1.wav'
 	},
 	{
 		'num': 4,
-		'colour': 'yellow'
+		'colour': 'yellow',
+		'sound': '../sounds/c1.wav'
 	}
 ];
 
