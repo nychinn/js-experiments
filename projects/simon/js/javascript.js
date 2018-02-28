@@ -36,6 +36,15 @@ let sequence = [];
 
 // set variable for the sequence user plays (clears every round)
 let userSequence = [];
+let count = 0;
+let playerCount = 0;
+
+// timeout
+const setDelay = function(i) {
+	setTimeout(function() { 
+		console.log(i); 
+	}, 1000);
+}
 
 // generate random number from 1 - 4
 const generateNum = function() {
@@ -43,28 +52,115 @@ const generateNum = function() {
 }
 
 const newRound = function() {
-	
+	// add number to sequence
+	sequence.push(generateNum());
+	count++;
+
+	// play sequence
+	for ( var i=0; i < sequence.length; i++ ) {
+		// setDelay(i);
+
+		(function(i) {
+			setTimeout(function() {
+				console.log(i);
+			}, 1000);
+		}(i));
+
+		var key = sequence[i];
+		var button = '';
+
+		colours.forEach(item=> {
+			if ( key === item.num ) {
+				button = item.colour;
+				// console.log(button);
+			} else {
+				return;
+			}
+		});
+
+		// setTimeout(function() {
+			$('.simonQuarter[data-colour="'+ button +'"]').addClass('j-active');
+		// }, 300);
+
+		setTimeout(function() {
+			$('.simonQuarter[data-colour="'+ button +'"]').removeClass('j-active');
+		}, 500);
+	}
+
+	console.log(sequence);
+
+	// users turn to copy
+
+	// check if sequence is the same
 }
+
+// const playerRound = function() {
+
+// }
 
 // main function that runs the game
 const initGame = function() {
-	sequence.push(generateNum());
-	console.log(sequence);
+	// sequence.push(generateNum());
+	// console.log(sequence);
+
+	newRound();
 }
 
+
+
 $('.simonQuarter').on('mousedown', function() {
+	var colour = $(this).attr('data-colour');
+	var key;
 	$(this).addClass('j-active');
-	console.log('down');
+
+	colours.forEach(item=> {
+		if ( colour === item.colour ) {
+			key = item.num;
+			// console.log(key);
+		} else {
+			return;
+		}
+	});
+
+	userSequence.push(key);
+
+	console.log('hello:', sequence[playerCount], userSequence[playerCount]);
+
+	if ( sequence[playerCount] === userSequence[playerCount] ) {
+		console.log('its a match!');
+		
+		
+		if ( playerCount === parseInt(sequence.length-1) ) {
+			playerCount = 0;
+			userSequence = [];
+			
+			newRound();
+
+		} else {
+			playerCount++;
+			return;
+		}
+
+	} else {
+		console.log('you lose!');
+		userSequence = [];
+		playerCount= 0;
+	}
+
+	// console.log('down');
 });
+
+
 
 $('.simonQuarter').on('mouseup', function() {
 	$(this).removeClass('j-active');
-	console.log('up');
+	// console.log('up');
 });
 
 // console.log(generateNum());
 
-$(document).on('click', '.simonStart', initGame);
+// $(document).on('click', '.simonStart', initGame);
+initGame();
 
 
 
