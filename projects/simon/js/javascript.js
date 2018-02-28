@@ -13,6 +13,10 @@
 // check the number pressed, and see if it matches the sequence
 // if it matches, continue. if not, you lose
 
+//-- score count
+// every correct match can be 5
+// every correct round can be 10
+
 const colours = [{
 		'num': 1,
 		'colour': 'green'
@@ -38,6 +42,7 @@ let sequence = [];
 let userSequence = [];
 let count = 0;
 let playerCount = 0;
+let score = 0;
 
 // timeout
 const setDelay = function(i) {
@@ -58,50 +63,51 @@ const newRound = function() {
 
 	// play sequence
 	for ( var i=0; i < sequence.length; i++ ) {
-		// setDelay(i);
 
 		(function(i) {
 			setTimeout(function() {
-				console.log(i);
-			}, 1000);
+				// console.log(i);
+
+				var key = sequence[i];
+				var button = '';
+
+				colours.forEach(item=> {
+					if ( key === item.num ) {
+						button = item.colour;
+					} else {
+						return;
+					}
+				});
+
+				setTimeout(function() {
+					$('.simonQuarter[data-colour="'+ button +'"]').addClass('j-active');
+				}, 500);
+
+				setTimeout(function() {
+					$('.simonQuarter[data-colour="'+ button +'"]').removeClass('j-active');
+				}, 1000);
+
+			}, i * 1000);
 		}(i));
-
-		var key = sequence[i];
-		var button = '';
-
-		colours.forEach(item=> {
-			if ( key === item.num ) {
-				button = item.colour;
-				// console.log(button);
-			} else {
-				return;
-			}
-		});
-
-		// setTimeout(function() {
-			$('.simonQuarter[data-colour="'+ button +'"]').addClass('j-active');
-		// }, 300);
-
-		setTimeout(function() {
-			$('.simonQuarter[data-colour="'+ button +'"]').removeClass('j-active');
-		}, 500);
 	}
 
 	console.log(sequence);
-
-	// users turn to copy
-
-	// check if sequence is the same
 }
 
-// const playerRound = function() {
 
-// }
+
+// update score
+const updateScore = function() {
+	$('.simonScore span').text(score);
+}
+
+
 
 // main function that runs the game
 const initGame = function() {
-	// sequence.push(generateNum());
-	// console.log(sequence);
+	if ( $('.simonStart').length ) {
+		$('.simonStart').hide();
+	}
 
 	newRound();
 }
@@ -109,9 +115,16 @@ const initGame = function() {
 
 
 $('.simonQuarter').on('mousedown', function() {
+	$(this).addClass('j-active');
+});
+
+
+
+$('.simonQuarter').on('mouseup', function() {
+	$(this).removeClass('j-active');
+
 	var colour = $(this).attr('data-colour');
 	var key;
-	$(this).addClass('j-active');
 
 	colours.forEach(item=> {
 		if ( colour === item.colour ) {
@@ -124,43 +137,40 @@ $('.simonQuarter').on('mousedown', function() {
 
 	userSequence.push(key);
 
-	console.log('hello:', sequence[playerCount], userSequence[playerCount]);
-
 	if ( sequence[playerCount] === userSequence[playerCount] ) {
 		console.log('its a match!');
-		
 		
 		if ( playerCount === parseInt(sequence.length-1) ) {
 			playerCount = 0;
 			userSequence = [];
-			
+			score+=10;
+			updateScore();
 			newRound();
 
 		} else {
 			playerCount++;
+			score+=5;
+			updateScore();
 			return;
 		}
 
 	} else {
 		console.log('you lose!');
 		userSequence = [];
+
+		// enter lose sequence
+
+		score=0;
+		updateScore();
 		playerCount= 0;
+		$('.simonStart').show();
 	}
-
-	// console.log('down');
-});
-
-
-
-$('.simonQuarter').on('mouseup', function() {
-	$(this).removeClass('j-active');
-	// console.log('up');
 });
 
 // console.log(generateNum());
 
-// $(document).on('click', '.simonStart', initGame);
-initGame();
+$(document).on('click', '.simonStart', initGame);
+// initGame();
 
 
 
