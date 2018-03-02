@@ -241,11 +241,8 @@ $('.simonQuarter').on('mouseup', function() {
 	}
 });
 
-// console.log(generateNum());
 
 $(document).on('click', '.simonStart', initGame);
-// initGame();
-
 
 
 function storageAvailable(type) {
