@@ -17,6 +17,14 @@
 // every correct match can be 5
 // every correct round can be 10
 
+//-- what happens when you lose?
+// go back to the beginning of the game
+
+//-- what happens when you win?
+// sparkles?
+
+
+
 const colours = [{
 		'num': 1,
 		'colour': 'green',
@@ -187,10 +195,12 @@ $('.simonQuarter').on('mouseup', function() {
 
 			setTimeout(function() {
 				$.playSound('sounds/success.wav');
+				$('.simonWinRound').addClass('j-active');
 			}, 1000);
 
 			setTimeout(function() {
 				newRound();
+				$('.simonWinRound').removeClass('j-active');
 			}, 2000);
 			
 
@@ -216,10 +226,18 @@ $('.simonQuarter').on('mouseup', function() {
 		
 		setTimeout(function() {
 			$.playSound('sounds/lose.wav');
+			$('.simonLose').addClass('j-active');
+		}, 1000);
+
+		setTimeout(function() {
 			score=0;
 			playerCount= 0;
+			$('.simonLose').removeClass('j-active');
+		}, 2000);
+
+		setTimeout(function() {
 			$('.simonStart').show();
-		}, 1000);
+		}, 2300);
 	}
 });
 
