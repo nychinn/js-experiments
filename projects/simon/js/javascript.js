@@ -20,22 +20,22 @@
 const colours = [{
 		'num': 1,
 		'colour': 'green',
-		'sound': '../sounds/a1s.wav'
+		'sound': 'sounds/a1s.wav'
 	},
 	{
 		'num': 2,
 		'colour': 'red',
-		'sound': '../sounds/f1.wav'
+		'sound': 'sounds/f1.wav'
 	},
 	{
 		'num': 3,
 		'colour': 'blue',
-		'sound': '../sounds/g1.wav'
+		'sound': 'sounds/g1.wav'
 	},
 	{
 		'num': 4,
 		'colour': 'yellow',
-		'sound': '../sounds/c1.wav'
+		'sound': 'sounds/c1.wav'
 	}
 ];
 
@@ -46,7 +46,10 @@ let sequence = [];
 let userSequence = [];
 let count = 0;
 let playerCount = 0;
+let highScore = 0;
 let score = 0;
+
+
 
 // timeout
 const setDelay = function(i) {
@@ -74,10 +77,12 @@ const newRound = function() {
 
 				var key = sequence[i];
 				var button = '';
+				var sound = '';
 
 				colours.forEach(item=> {
 					if ( key === item.num ) {
 						button = item.colour;
+						sound = item.sound;
 					} else {
 						return;
 					}
@@ -85,6 +90,7 @@ const newRound = function() {
 
 				setTimeout(function() {
 					$('.simonQuarter[data-colour="'+ button +'"]').addClass('j-active');
+					$.playSound(sound);
 				}, 500);
 
 				setTimeout(function() {
@@ -102,8 +108,34 @@ const newRound = function() {
 
 // update score
 const updateScore = function() {
-	$('.simonScore span').text(score);
+	$('.simonScore .scoreText').text(score);
 }
+
+
+// update high score
+const updateHighScore = function() {
+	if ( score > highScore ) {
+		highScore = score;
+		$('.simonHighScore .highScoreText').text(highScore);
+	}
+}
+
+// if there's local storage
+const updateLocalHighScore = function() {
+	if ( storageAvailable('localStorage') ) {
+		
+		if ( parseInt(localStorage.highScore) > highScore ) {
+			highScore = localStorage.highScore;
+		} else {
+			localStorage.highScore = highScore;
+		}
+
+		$('.simonHighScore .highScoreText').text(localStorage.highScore);
+	}
+}
+
+updateLocalHighScore();
+
 
 
 
@@ -129,10 +161,12 @@ $('.simonQuarter').on('mouseup', function() {
 
 	var colour = $(this).attr('data-colour');
 	var key;
+	var sound;
 
 	colours.forEach(item=> {
 		if ( colour === item.colour ) {
 			key = item.num;
+			sound = item.sound;
 			// console.log(key);
 		} else {
 			return;
@@ -140,6 +174,7 @@ $('.simonQuarter').on('mouseup', function() {
 	});
 
 	userSequence.push(key);
+	$.playSound(sound);
 
 	if ( sequence[playerCount] === userSequence[playerCount] ) {
 		console.log('its a match!');
@@ -147,13 +182,21 @@ $('.simonQuarter').on('mouseup', function() {
 		if ( playerCount === parseInt(sequence.length-1) ) {
 			playerCount = 0;
 			userSequence = [];
-			score+=10;
+			score+=100;
 			updateScore();
-			newRound();
+
+			setTimeout(function() {
+				$.playSound('sounds/success.wav');
+			}, 1000);
+
+			setTimeout(function() {
+				newRound();
+			}, 2000);
+			
 
 		} else {
 			playerCount++;
-			score+=5;
+			score+=50;
 			updateScore();
 			return;
 		}
@@ -161,13 +204,22 @@ $('.simonQuarter').on('mouseup', function() {
 	} else {
 		console.log('you lose!');
 		userSequence = [];
+		sequence = [];
 
 		// enter lose sequence
 
-		score=0;
 		updateScore();
-		playerCount= 0;
-		$('.simonStart').show();
+		updateHighScore();
+		updateLocalHighScore();
+
+		console.log(score, highScore, localStorage.highScore);
+		
+		setTimeout(function() {
+			$.playSound('sounds/lose.wav');
+			score=0;
+			playerCount= 0;
+			$('.simonStart').show();
+		}, 1000);
 	}
 });
 
@@ -178,4 +230,26 @@ $(document).on('click', '.simonStart', initGame);
 
 
 
-
+function storageAvailable(type) {
+    try {
+        var storage = window[type],
+            x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+    }
+    catch(e) {
+        return e instanceof DOMException && (
+            // everything except Firefox
+            e.code === 22 ||
+            // Firefox
+            e.code === 1014 ||
+            // test name field too, because code might not be present
+            // everything except Firefox
+            e.name === 'QuotaExceededError' ||
+            // Firefox
+            e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
+            // acknowledge QuotaExceededError only if there's something already stored
+            storage.length !== 0;
+    }
+}

@@ -20,20 +20,33 @@
         <!--[if lte IE 9]>
             <p class="browserupgrade">You are using an <strong>outdated</strong> browser. Please <a href="https://browsehappy.com/">upgrade your browser</a> to improve your experience and security.</p>
         <![endif]-->
+        
+        <div class="container">
 
-        <div class="simonWrap">
-            <!-- <h1 class="simonTitle">Simon Game</h1> -->
-            <div class="simonStart">Let's play!</div>
-            <div class="simonScore"><strong>Score:</strong> <span>0</span></div>
-            <div class="simonCircle">
-                <div class="simonQuarter simonQuarter--green" data-colour="green"></div>
-                <div class="simonQuarter simonQuarter--red" data-colour="red"></div>
-                <div class="simonQuarter simonQuarter--blue" data-colour="blue"></div>
-                <div class="simonQuarter simonQuarter--yellow" data-colour="yellow"></div>
-            </div>
-        </div><!--/.simonWrap-->
+            <div class="simonWrap">
+                <!-- <h1 class="simonTitle">Simon Game</h1> -->
+                <div class="simonStart">Let's play!</div>
+                <div class="simonSuccess">
+                    
+                </div>
+                <div class="simonScore">
+                    <strong>Score:</strong> <span class="scoreText">0</span>
+                </div>
+                <div class="simonHighScore">
+                    <strong>High Score:</strong> <span class="highScoreText">0</span>
+                </div>
+                <div class="simonCircle">
+                    <div class="simonQuarter simonQuarter--green" data-colour="green"></div>
+                    <div class="simonQuarter simonQuarter--red" data-colour="red"></div>
+                    <div class="simonQuarter simonQuarter--blue" data-colour="blue"></div>
+                    <div class="simonQuarter simonQuarter--yellow" data-colour="yellow"></div>
+                </div>
+            </div><!--/.simonWrap-->
+
+        </div>
 
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+        <script src='https://cdn.rawgit.com/admsev/jquery-play-sound/master/jquery.playSound.js'></script>
         <script src="js/javascript.js"></script>
     </body>
 </html>
