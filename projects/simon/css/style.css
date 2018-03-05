@@ -227,6 +227,17 @@ body {
 	overflow: hidden;
 }
 
+.simonCircleBorder {
+	border: 10px solid #333;
+	box-sizing: border-box;
+	-webkit-border-radius: 50%;
+	        border-radius: 50%;
+	width: 500px;
+	height: 500px;
+	position: absolute;
+	pointer-events: none;
+}
+
 .simonQuarter {
 	display: block;
 	/*height: 250px;*/
@@ -288,6 +299,10 @@ body {
 		padding: 120px 20px 20px;
 	}
 	.simonCircle {
+		width: 300px;
+		height: 300px;
+	}
+	.simonCircleBorder {
 		width: 300px;
 		height: 300px;
 	}
