@@ -274,6 +274,7 @@ body {
 	body {
 		padding: 0;
 		background-color: var(--bgColr);
+		overflow: hidden;
 	}
 	.container {
 		max-width: 100%;
@@ -286,8 +287,8 @@ body {
 		padding: 120px 20px 20px;
 	}
 	.simonCircle {
-		width: 280px;
-		height: 280px;
+		width: 240px;
+		height: 240px;
 	}
 	.simonScore,
 	.simonHighScore {
