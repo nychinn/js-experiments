@@ -1,7 +1,7 @@
 
 :root {
 	--bgColr: #fff;
-	
+	--resultBg: rgba(0,0,0,0.7);
 }
 
 body {
@@ -33,6 +33,15 @@ body {
 	color: #fff;
 	text-transform: uppercase;
 	font-size: 11px;
+}
+
+.restart {
+	display: inline-block;
+	margin-left: 10px;
+	cursor: pointer;
+	position: absolute;
+	opacity: 0;
+	pointer-events: none;
 }
 
 .container {
@@ -141,7 +150,7 @@ body {
 	opacity: 1;
 	font-size: 24px;
 	font-weight: bold;
-	background-color: rgba(0,0,0,0.7);
+	background-color: var(--resultBg);
 	color: #fff;
 	opacity: 0;
 	pointer-events: none;

@@ -6,12 +6,6 @@ let playerSelection = '';
 let computerSelection = '';
 let winText = '';
 
-
-
-function playRound() {
-
-}
-
 function computerPlay() {
 	const choices = ['rock', 'paper', 'scissors'];
 	let choice = Math.floor(Math.random() * 3);
@@ -45,60 +39,76 @@ function showImage(player, weapon) {
 	}
 }
 
-$(document).on('click', '.chooseWeapon', function() {
-	computerSelection = computerPlay();
-	playerSelection = $(this).data('control');
-
-	console.log('Computer: ' + computerSelection, '| Player: ' + playerSelection);
-
+function checkWinner() {
 	if ( playerSelection === computerSelection ) {
 		showImage('player', playerSelection);
 		showImage('computer', computerSelection);
 		winText = 'this is a draw!';
-		// console.log('this is a draw!');
 	} else {
 		if ( playerSelection === 'rock' ) {
 			showImage('player', 'rock');
 			if ( computerSelection === 'paper' ) {
 				showImage('computer', 'paper');
 				winText = 'computer wins!';
-				// console.log('computer wins!');
 			} else {
 				showImage('computer', 'scissors');
 				winText = 'player wins!';
-				// console.log('player wins!');
 			}
 		} else if ( playerSelection === 'paper' ) {
 			showImage('player', 'paper');
 			if ( computerSelection === 'scissors' ) {
 				showImage('computer', 'scissors');
 				winText = 'computer wins!';
-				// console.log('computer wins!');
 			} else {
 				showImage('computer', 'rock');
 				winText = 'player wins!';
-				// console.log('player wins!');
 			}
 		} else {
 			showImage('player', 'scissors');
 			if ( computerSelection === 'rock' ) {
 				showImage('computer', 'rock');
 				winText = 'computer wins!';
-				// console.log('computer wins!');
 			} else {
 				showImage('computer', 'paper');
 				winText = 'player wins!';
-				// console.log('player wins!');
 			}
 		}
 	}
+}
 
+function showResult() {
 	$('.rpsControls').addClass('j-hidden');
 	$('.rpsResult').text(winText);
 
 	setTimeout(function() {
 		$('.rpsResult').addClass('j-show');
+		$('.restart').addClass('j-show');
 	}, 300);
+}
+
+function clearGame() {
+	playerSelection = '';
+	computerSelection = '';
+	winText = '';
+
+	$('.rpsControls').removeClass('j-hidden');
+	$('.rpsGame').removeClass('j-show')
+	$('.rpsResult').removeClass('j-show');
+	$('.restart').removeClass('j-show');
+}
+
+$(document).on('click', '.chooseWeapon', function() {
+	computerSelection = computerPlay();
+	playerSelection = $(this).data('control');
+
+	// console.log('Computer: ' + computerSelection, '| Player: ' + playerSelection);
+
+	checkWinner();
+	showResult();
+});
+
+$(document).on('click', '.restart', function() {
+	clearGame();
 });
 
 
