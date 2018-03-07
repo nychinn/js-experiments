@@ -19,8 +19,13 @@
 * Find the next Prime Number
 * Unit Converter
 * Binary to Decimal converter
+* Fortune Teller (Horoscrope aggregator)
 * Coin Flip Simulation
 * Spin to win wheel
+* Falling snow
+* Weather Report
+
+
 
 
 
@@ -32,4 +37,5 @@ https://github.com/karan/Projects
 https://www.quora.com/Where-can-I-get-ideas-for-small-JavaScript-projects-to-do
 https://ideas.pencilcode.net/
 https://www.reddit.com/r/dailyprogrammer/wiki/challenges
+https://www.theodinproject.com/
 
