@@ -25,15 +25,42 @@ body {
 	text-align: center;
 }
 
-.etchClear,
+.etchSize {
+	margin: 0 0 10px;
+}
+
+.etchSize label,
+.etchSize input {
+	display: inline-block;
+}
+
+.etchSize label {
+	margin-right: 10px;
+}
+
+.etchSize input {
+	padding: 10px;
+	width: 100px;
+	font-size: 16px;
+	box-sizing: border-box;
+	border: 1px solid #ddd;
+	-webkit-appearance: none;
+	   -moz-appearance: none;
+	        appearance: none;
+	        line-height: 1;
+}
+
 .etchRestart {
 	padding: 10px 20px;
 	text-transform: uppercase;
 	letter-spacing: 0.03em;
 	border: 1px solid #000;
 	display: inline-block;
-	margin: 0 0 24px;
+	/*margin: 0 0 24px;*/
 	cursor: pointer;
+	font-size: 16px;
+	box-sizing: border-box;
+	line-height: 1;
 }
 
 .etchRestart:hover {
@@ -69,7 +96,7 @@ body {
 	        flex-wrap: wrap;
 }
 
-@media screen and (max-width: 750px) {
+@media screen and (max-width: 800px) {
 	.etchGridWrap {
 		max-width: 80%;
 		padding-bottom: 80%;
@@ -83,6 +110,7 @@ body {
 	float: left;
 	box-sizing: border-box;
 	position: relative;
+	cursor: pointer;
 }
 
 .block::after {
