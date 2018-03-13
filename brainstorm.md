@@ -24,6 +24,8 @@
 * Spin to win wheel
 * Falling snow
 * Weather Report
+* Number Scramble Game
+
 
 
 

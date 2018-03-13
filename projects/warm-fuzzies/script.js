@@ -19,6 +19,12 @@
  	'presence'
  ]
 
+ const quotes = [
+ 	'You miss 100% of the shots you don\'t take',
+ 	'Whatever you think you can or cannot, you are right',
+
+ ]
+
  const button = document.querySelector('.button');
  const message = document.querySelector('.warmFuzzy');
 
@@ -26,9 +32,10 @@
  	return Math.floor((Math.random() * array.length));
  }
 
+
  function generate() {
- 	let random = Math.floor( (Math.random() * list.length));
- 	return list[random];
+ 	let number = random(list);
+ 	return list[number];
  }
 
  function generate2() {
@@ -38,6 +45,11 @@
  	return 'You have a ' + adjective + ' ' + noun;
  }
 
+ function generateQuotes() {
+	let number = random(quotes);
+ 	return list[number];
+ }
+
  function showWarmFuzzy() {
  	let generated = generate();
  	message.innerHTML = generated;
@@ -45,3 +57,16 @@
 
  button.addEventListener('click', showWarmFuzzy);
  showWarmFuzzy();
+
+
+
+
+
+
+
+
+
+
+
+
+
